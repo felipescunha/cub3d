@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_color_floor.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
+/*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 20:08:55 by fecunha           #+#    #+#             */
-/*   Updated: 2023/06/29 21:54:22 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/01 01:18:00 by learn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-
-void free_floor(char **floor)
-{
-    int i;
-
-    i = 0;
-    while (floor[i])
-        free(floor[i++]);
-    free(floor);
-}
 
 void print_floor_value(t_cub3d *cub3d)
 {
@@ -37,31 +26,33 @@ static void check_range_of_number(t_cub3d *cub3d)
 {
 	if(cub3d->floor.red < 0 || cub3d->floor.red > 255)
 		print_error("the red valeu in floor is not correct!");
-	if(cub3d->floor.green < 0 || cub3d->floor.red > 255)
+	if(cub3d->floor.green < 0 || cub3d->floor.green > 255)
 		print_error("the green valeu in floor is not correct!");
-	if(cub3d->floor.blue < 0 || cub3d->floor.red > 255)
+	if(cub3d->floor.blue < 0 || cub3d->floor.blue > 255)
 		print_error("the blue valeu in floor is not correct!");
 	printf("\n");
 }
 
-;
-
 void check_color_floor(t_cub3d *cub3d)
 {
-	int i;
-	char **floor = malloc(sizeof(4));
+	char	**floor;
+	int		i;
+
 	i = 0;
 	while (i < cub3d->read_lines)
 	{
 		if(ft_strchr(cub3d->file[i], 'F'))
 		{
 			floor  = ft_split_comma(cub3d->file[i]);
-			cub3d->floor.red = ft_atoi(floor[1]);
-			cub3d->floor.green = ft_atoi(floor[2]);
-			cub3d->floor.blue = ft_atoi(floor[3]);
+			if(ft_array_size(floor) != 4)
+				print_error("the correct struct is: F 255,255,255");
+			cub3d->floor.red = ft_atoi_digit(floor[1]);
+			cub3d->floor.green = ft_atoi_digit(floor[2]);
+			cub3d->floor.blue = ft_atoi_digit(floor[3]);
 		}
 		i++;
 	}
-	free_floor(floor);
+	ft_array_size(floor);
+	ft_free_array(floor);
 	check_range_of_number(cub3d);
 }

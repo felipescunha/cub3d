@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   check_coordinate_no.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 21:21:09 by fecunha           #+#    #+#             */
-/*   Updated: 2023/06/30 18:11:56 by learn            ###   ########.fr       */
+/*   Created: 2023/06/30 21:00:22 by learn             #+#    #+#             */
+/*   Updated: 2023/07/01 00:40:20 by learn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	read_map(t_cub3d *cub3d, char *argv)
+void check_coordinate_no(t_cub3d *cub3d)
 {
-	int		fd;
-	char	*line;
-	int		total_lines;
 
-	fd = open(argv, O_RDONLY);
-	total_lines = 0;
-	if (fd < 0)
-		print_error("Map not found!\n");
-	line = get_next_line(fd);
-	if (!line)
-		print_error("Empty map!\n");
-	total_lines = 1;
-	free(line);
-	while (line)
+	int		i;
+	
+	i = 0;
+
+	while (i < cub3d->read_lines)
 	{
-		line = get_next_line(fd);
-		if(!line)
-			break;
-		total_lines++;
-		if (line)
-			free(line);
+		if(ft_strncmp(cub3d->file[i], "NO", 2) == 0)
+		{
+        	ft_printf("%s\n", cub3d->file[i]);
+		}
+		i++;
 	}
-	cub3d->read_lines = total_lines;
-	close(fd);
 }

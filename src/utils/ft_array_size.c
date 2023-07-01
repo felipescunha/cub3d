@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   ft_array_size.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 21:21:09 by fecunha           #+#    #+#             */
-/*   Updated: 2023/06/30 18:11:56 by learn            ###   ########.fr       */
+/*   Created: 2022/05/24 19:31:40 by fecunha           #+#    #+#             */
+/*   Updated: 2023/06/30 22:05:40 by learn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	read_map(t_cub3d *cub3d, char *argv)
+size_t ft_array_size(char **array)
 {
-	int		fd;
-	char	*line;
-	int		total_lines;
-
-	fd = open(argv, O_RDONLY);
-	total_lines = 0;
-	if (fd < 0)
-		print_error("Map not found!\n");
-	line = get_next_line(fd);
-	if (!line)
-		print_error("Empty map!\n");
-	total_lines = 1;
-	free(line);
-	while (line)
-	{
-		line = get_next_line(fd);
-		if(!line)
-			break;
-		total_lines++;
-		if (line)
-			free(line);
-	}
-	cub3d->read_lines = total_lines;
-	close(fd);
+	size_t i;
+	
+	i = 0;
+	if(!array)
+		return (0);
+	while (array[i])
+		i++;	
+	return (i);
 }
