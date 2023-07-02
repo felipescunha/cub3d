@@ -6,7 +6,7 @@
 /*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:20:09 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/01 02:18:28 by learn            ###   ########.fr       */
+/*   Updated: 2023/07/02 18:07:35 by learn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 	copy_file(&cub3d, argv[1]);
 	check_color_floor(&cub3d);
 	check_color_ceiling(&cub3d);
-	check_coordinate_no(&cub3d);
+	check_coordinate(&cub3d);
 	print_file(&cub3d);
 	//free_map(&cub3d);
 	return (0);
