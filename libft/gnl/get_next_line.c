@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 00:08:43 by fecunha           #+#    #+#             */
-/*   Updated: 2022/10/20 16:25:52 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/03 16:09:39 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,11 @@ char	*get_next_line(int fd)
 	char		*buffer;
 
 	if (read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
+	{
+		free(save);
+		save = 0;
 		return (NULL);
+	}
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
