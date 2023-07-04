@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:25:35 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/03 19:39:22 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/03 21:00:59 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	copy_file(t_cub3d *cub3d, char *argv)
 	int		i;
 
  	i = 0;
-	cub3d->lines = 0;
 	fd = open(argv, O_RDONLY);
 	line = get_next_line(fd);
 	cub3d->file = ft_calloc(cub3d->read_lines + 1, sizeof (char *));

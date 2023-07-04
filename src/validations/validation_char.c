@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 20:07:38 by fecunha           #+#    #+#             */
-/*   Updated: 2023/04/15 20:50:26 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/03 21:03:49 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	validation_char(t_cub3d *cub3d)
 	int	j;
 
 	j = 0;
-	while (j < cub3d->lines)
+	while (j < cub3d->read_lines)
 	{
 		i = 0;
 		while (cub3d->map[j][i] != '\0')

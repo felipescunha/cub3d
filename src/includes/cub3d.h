@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/02 18:06:25 by learn            ###   ########.fr       */
+/*   Updated: 2023/07/03 21:01:06 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_texture {
 typedef struct s_cub3d {
 	char	**file;
 	char	**map;
-	int		lines;
+	int		index;
 	int		read_lines;
 	t_data 	img;
 	t_color	ceiling;
