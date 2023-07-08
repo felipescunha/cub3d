@@ -2,10 +2,12 @@
 
 void free_map(t_cub3d *cub3d)
 {
-    int i;
-
-    i = 0;
-    while (cub3d->file[i])
-        free(cub3d->file[i++]);
+    cub3d->index = 0;
+    while (cub3d->file[cub3d->index])
+        free(cub3d->file[cub3d->index++]);
     free(cub3d->file);
+    cub3d->index = 0;
+    while (cub3d->coordinate[cub3d->index])
+        free(cub3d->coordinate[cub3d->index++]);
+    free(cub3d->coordinate);
 }

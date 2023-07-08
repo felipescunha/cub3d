@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
+/*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/03 21:01:06 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/04 18:07:40 by learn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_texture {
 }	t_texture;
 
 typedef struct s_cub3d {
+	char    **coordinate;
 	char	**file;
 	char	**map;
 	int		index;
@@ -62,5 +63,6 @@ void	print_map(t_cub3d *cub3d);
 void	check_color_ceiling(t_cub3d *cub3d);
 void	check_color_floor(t_cub3d *cub3d);
 void	check_coordinate(t_cub3d *cub3d);
+void	check_ceiling_floor(t_cub3d *cub3d);
 
 #endif

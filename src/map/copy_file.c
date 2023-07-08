@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
+/*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:25:35 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/03 21:00:59 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/04 20:17:56 by learn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static char	*remove_new_line(char *str)
 		return (NULL);
 	i = 0;
 	len = ft_strlen(str);
+
 	while (str[i])
 	{
 		if (str[i] && str[i] == '\n' && len > 1)
@@ -43,7 +44,7 @@ void	copy_file(t_cub3d *cub3d, char *argv)
 	fd = open(argv, O_RDONLY);
 	line = get_next_line(fd);
 	cub3d->file = ft_calloc(cub3d->read_lines + 1, sizeof (char *));
-	cub3d->file[i++] = remove_new_line(line);
+	cub3d->file[i++] = ft_strtrim(remove_new_line(line), " ");
 	while (cub3d->read_lines >= i)
 	{
 		line = get_next_line(fd);

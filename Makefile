@@ -9,7 +9,7 @@ SRCS =	src/main.c src/map/free_map.c src/map/copy_file.c src/map/read_map.c src/
 		src/validations/validation_map_name.c src/validations/validation_char.c \
 		src/utils/split_comma.c src/validations/check_color_floor.c src/validations/check_color_ceiling.c \
 		src/utils/ft_atoi_digit.c src/utils/ft_array_size.c src/utils/ft_free_array.c  \
-		src/validations/check_coordinate.c
+		src/validations/check_coordinate.c src/validations/check_ceiling_floor.c
 
 OBJS = $(SRCS:.c=.o)
 LIBFT = make -C libft && cp libft/libft.a ./
@@ -36,7 +36,7 @@ fclean: clean
 	@rm -f $(LIBFT_A)
 	@rm -rf cub3d.dSYM
 	@$(FCLIBFT)
-	@echo "\033[1;30m ..::::: Cub3d Deleted  :::::.. \033[0m"
+	@echo "\033[1;35m ..::::: Cub3d Deleted  :::::.. \033[0m"
 
 re: fclean all
 
