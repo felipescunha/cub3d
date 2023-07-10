@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_color_floor.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 20:08:55 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/01 01:18:00 by learn            ###   ########.fr       */
+/*   Updated: 2023/07/10 18:18:53 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void check_range_of_number(t_cub3d *cub3d)
 
 void check_color_floor(t_cub3d *cub3d)
 {
-	char	**floor;
 	int		i;
 
 	i = 0;
@@ -43,16 +42,18 @@ void check_color_floor(t_cub3d *cub3d)
 	{
 		if(ft_strchr(cub3d->file[i], 'F'))
 		{
-			floor  = ft_split_comma(cub3d->file[i]);
-			if(ft_array_size(floor) != 4)
+			cub3d->verify_floor  = ft_split_comma(cub3d->file[i]);
+			if(ft_array_size(cub3d->verify_floor) != 4)
 				print_error("the correct struct is: F 255,255,255");
-			cub3d->floor.red = ft_atoi_digit(floor[1]);
-			cub3d->floor.green = ft_atoi_digit(floor[2]);
-			cub3d->floor.blue = ft_atoi_digit(floor[3]);
+			cub3d->floor.red = ft_atoi_digit(cub3d->verify_floor[1]);
+			cub3d->floor.green = ft_atoi_digit(cub3d->verify_floor[2]);
+			cub3d->floor.blue = ft_atoi_digit(cub3d->verify_floor[3]);
 		}
 		i++;
 	}
-	ft_array_size(floor);
-	ft_free_array(floor);
+	if(!ft_array_size(cub3d->verify_floor))
+		print_error("Verify Floor in map!\n");
+	if(cub3d->verify_floor)
+		ft_free_array(cub3d->verify_floor);
 	check_range_of_number(cub3d);
 }

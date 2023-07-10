@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_array_size.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:31:40 by fecunha           #+#    #+#             */
-/*   Updated: 2023/06/30 22:05:40 by learn            ###   ########.fr       */
+/*   Updated: 2023/07/10 16:30:52 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ size_t ft_array_size(char **array)
 	if(!array)
 		return (0);
 	while (array[i])
-		i++;	
+		i++;
 	return (i);
 }

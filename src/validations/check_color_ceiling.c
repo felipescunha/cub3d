@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_color_ceiling.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 20:08:50 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/04 19:56:34 by learn            ###   ########.fr       */
+/*   Updated: 2023/07/10 17:10:58 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,24 @@ static void check_range_of_number(t_cub3d *cub3d)
 
 void check_color_ceiling(t_cub3d *cub3d)
 {
-	char	**ceiling;
+
 	cub3d->index = 0;
 	while (cub3d->index < cub3d->read_lines)
 	{
 		if(ft_strchr(cub3d->file[cub3d->index], 'C'))
 		{
-			ceiling  = ft_split_comma(cub3d->file[cub3d->index]);
-			if(ft_array_size(ceiling) != 4)
+			cub3d->verify_ceiling  = ft_split_comma(cub3d->file[cub3d->index]);
+			if(ft_array_size(cub3d->verify_ceiling) != 4)
 				print_error("the correct struct is: C 255,255,255");
-			cub3d->ceiling.red = ft_atoi_digit(ceiling[1]);
-			cub3d->ceiling.green = ft_atoi_digit(ceiling[2]);
-			cub3d->ceiling.blue = ft_atoi_digit(ceiling[3]);
+			cub3d->ceiling.red = ft_atoi_digit(cub3d->verify_ceiling[1]);
+			cub3d->ceiling.green = ft_atoi_digit(cub3d->verify_ceiling[2]);
+			cub3d->ceiling.blue = ft_atoi_digit(cub3d->verify_ceiling[3]);
 		}
 		cub3d->index++;
 	}
-	ft_array_size(ceiling);
-	ft_free_array(ceiling);
+	if(!ft_array_size(cub3d->verify_ceiling))
+		print_error("Verify Ceiling in map!\n");
+	if(cub3d->verify_ceiling)
+		ft_free_array(cub3d->verify_ceiling);
 	check_range_of_number(cub3d);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/04 18:07:40 by learn            ###   ########.fr       */
+/*   Updated: 2023/07/10 17:44:01 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_cub3d {
 	char    **coordinate;
 	char	**file;
 	char	**map;
+	char	**verify_ceiling;
+	char	**verify_floor;
 	int		index;
 	int		read_lines;
 	t_data 	img;
@@ -50,8 +52,8 @@ typedef struct s_cub3d {
 }	t_cub3d;
 
 size_t	ft_array_size(char **array);
-long	ft_atoi_digit(const char *str);
 char	**ft_split_comma(char const *s);
+long	ft_atoi_digit(const char *str);
 void	read_map(t_cub3d *cub3d, char *argv);
 void	copy_file(t_cub3d *cub3d, char *argv);
 void	validation_map_name(int argc, char *argv);
@@ -64,5 +66,6 @@ void	check_color_ceiling(t_cub3d *cub3d);
 void	check_color_floor(t_cub3d *cub3d);
 void	check_coordinate(t_cub3d *cub3d);
 void	check_ceiling_floor(t_cub3d *cub3d);
+int		validation_char(t_cub3d *cub3d);
 
 #endif
