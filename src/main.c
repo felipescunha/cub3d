@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:20:09 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/10 21:38:05 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/11 16:36:31 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,13 @@ int	main(int argc, char **argv)
 	t_cub3d	cub3d;
 
 	if (argc != 2)
-	{
-		printf("Number of argument is inválid\n");
-		return (0);
-	}
+		print_error("Number of argument is inválid\n");
 	ft_memset(&cub3d, 0, sizeof(t_cub3d));
 	set_value_in_coordinate(&cub3d);
 	validation_map_name(argc, argv[1]);
 	read_map(&cub3d, argv[1]);										
 	copy_file(&cub3d, argv[1]);
-	//validation_char(&cub3d);
-	check_ceiling_floor(&cub3d);
-	check_color_ceiling(&cub3d);
-	check_color_floor(&cub3d);
-	check_coordinate(&cub3d);
+	validations(&cub3d);
 	copy_map(&cub3d);
 	//print_file(&cub3d); 
 	free_map(&cub3d);

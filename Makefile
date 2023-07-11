@@ -1,6 +1,6 @@
 CC = cc 
 #-fsanitize=address 
-NAME = cub3d
+NAME = cub3D
 LIBFT_A	= libft.a
 CFLAGS = -Wall -Wextra -Werror -g
 INCLUDE_L = -L ./mlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
@@ -10,7 +10,7 @@ SRCS =	src/main.c src/map/free_map.c src/map/copy_file.c src/map/copy_map.c src/
 		src/utils/split_comma.c src/validations/check_color_floor.c src/validations/check_color_ceiling.c \
 		src/utils/ft_atoi_digit.c src/utils/ft_array_size.c src/utils/ft_free_array.c  \
 		src/validations/check_coordinate.c src/validations/check_ceiling_floor.c \
-		src/map/get_range.c 
+		src/map/get_range.c src/validations/validations.c
 
 OBJS = $(SRCS:.c=.o)
 LIBFT = make -C libft && cp libft/libft.a ./
