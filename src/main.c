@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:20:09 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/10 17:46:41 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/10 21:38:05 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	main(int argc, char **argv)
 	check_color_ceiling(&cub3d);
 	check_color_floor(&cub3d);
 	check_coordinate(&cub3d);
-	print_file(&cub3d);
+	copy_map(&cub3d);
+	//print_file(&cub3d); 
 	free_map(&cub3d);
 	return (0);
 }
