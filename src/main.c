@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:20:09 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/11 16:36:31 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/13 17:35:36 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,19 @@
 
 void set_value_in_coordinate(t_cub3d *cub3d)
 {
+	cub3d->texture = ft_calloc(5, sizeof(char *));
 	cub3d->coordinate = ft_calloc(5, sizeof(char *));
-	cub3d->coordinate[0] = ft_strdup("NO");
-	cub3d->coordinate[1] = ft_strdup("SO");
-	cub3d->coordinate[2] = ft_strdup("WE");
-	cub3d->coordinate[3] = ft_strdup("EA");
+	cub3d->coordinate[0] = ft_strdup("NO  ");
+	cub3d->coordinate[1] = ft_strdup("SO  ");
+	cub3d->coordinate[2] = ft_strdup("WE  ");
+	cub3d->coordinate[3] = ft_strdup("EA  ");
 }
 
-void	print_file(t_cub3d *cub3d)
+void	print_map(t_cub3d *cub3d)
 {
-	int	i;
-
-	i = 0;
-	while (i < cub3d->read_lines)
-	{
-		printf("%s\n", cub3d->file[i++]);
-	}
+	int	i = 0;
+	while (cub3d->map)
+		ft_printf("%s\n", cub3d->map[i++]);
 }
 
 int	main(int argc, char **argv)
@@ -45,7 +42,7 @@ int	main(int argc, char **argv)
 	copy_file(&cub3d, argv[1]);
 	validations(&cub3d);
 	copy_map(&cub3d);
-	//print_file(&cub3d); 
+	print_map(&cub3d); 
 	free_map(&cub3d);
 	return (0);
 }

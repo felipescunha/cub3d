@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:22:43 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/10 22:25:55 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/12 14:28:25 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	copy_map(t_cub3d *cub3d)
     while (cub3d->file[i])
     {
         cub3d->map[j] = ft_strdup(cub3d->file[i]);
-        ft_printf("%s\n", cub3d->map[j]);
         i++;
         j++;
     }
