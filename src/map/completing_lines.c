@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   completing_lines.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 12:42:29 by learn             #+#    #+#             */
-/*   Updated: 2023/07/16 21:08:52 by learn            ###   ########.fr       */
+/*   Updated: 2023/07/17 15:02:03 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*complited_line(char *line, int max_col)
 	len = ft_strlen(line);
 	temp_line = my_realloc(line, max_col + 2);
 	while (len < max_col +1)
-		temp_line[len++] = '*';
+		temp_line[len++] = ' ';
 	return (temp_line);
 }
 
@@ -29,7 +29,7 @@ static void	fill_copy_map(t_cub3d *cub3d)
 	int	max_size;
 	size_t	last_line;
 
-	last_line = cub3d->array_size;
+	last_line = cub3d->array_size -1;
 	max_size = cub3d->biggest_line + 1;
     cub3d->full_map[0] = ft_calloc(sizeof(char), max_size);
 	cub3d->full_map[last_line] = ft_calloc(sizeof(char), max_size);
@@ -50,9 +50,9 @@ int fill_rows(t_cub3d *cub3d)
 	if (!cub3d->full_map)
 		return (1);
 	fill_copy_map(cub3d);
-	while (cub3d->map[i] && i < cub3d->array_size)
+	while (cub3d->map[i] && i < 4)
 	{
-		temp_line = ft_strjoin("*", cub3d->map[i]);
+		temp_line = ft_strjoin(" ", cub3d->map[i]);
 		cub3d->full_map[j++] = complited_line(temp_line, cub3d->biggest_line + 1);
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 20:07:38 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/16 14:06:36 by learn            ###   ########.fr       */
+/*   Updated: 2023/07/17 14:16:46 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,19 @@ void	validation_char(t_cub3d *cub3d)
 			if (cub3d->map[i] && (cub3d->map[i][j] == 'N'
 				|| cub3d->map[i][j] == 'S' || cub3d->map[i][j] == 'W'
 				|| cub3d->map[i][j] == 'E'))
-					flag--;
+					flag++;
+
 			if (cub3d->map[i] && (cub3d->map[i][j] != 32
 				&& cub3d->map[i][j] != '1' && cub3d->map[i][j] != '0'
 				&& cub3d->map[i][j] != 'N' && cub3d->map[i][j] != 'S'
 				&& cub3d->map[i][j] != 'W' && cub3d->map[i][j] != 'E' ))
-				print_error("Error\n Only 1, 0, N, S, W, E or Spaces\n");
+				print_error("Only characters 1, 0, N, S, W, E or Spaces are permited\n");
 			j++;
 		}
 		i++;
 	}
-	if (flag > -1)
+	if (flag == 0)
 		print_error("Need a position N, S, W, or E \n");
+	if (flag > 1 )
+		print_error("More then one player detected\n");
 }
-
-/* int	check_map_x_y(t_cub3d *cub3d)
-{
-	if (radar_validation(cub3d))
-		return (ret_value(1, "Close map around spaces"));
-	free_matrix(cub3d->full_map);
-	return (0);
-} */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:03:51 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/14 11:52:59 by learn            ###   ########.fr       */
+/*   Updated: 2023/07/17 17:13:51 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void check_extension(t_cub3d *cub3d)
     }
 }
 
-
 char *ft_split_texture(char **texture)
 {
     if(ft_array_size(texture) != 2)
@@ -42,37 +41,47 @@ char *ft_split_texture(char **texture)
 int  validations(t_cub3d *cub3d)
 {    
     int i = 0;
+    int j = 0;
     int size = get_range(cub3d);
+    char *tmp_strtrim;
+    char **tmp_split;
 
     cub3d->index = 0;
     while (i < size)
     {
         check_color_ceiling(cub3d, i);
         check_color_floor(cub3d, i);
-        if(ft_strncmp(ft_strtrim(cub3d->file[i], ""), "NO", 2) == 0)
+        tmp_strtrim = ft_strtrim(cub3d->file[i], "");
+        tmp_split = ft_split(cub3d->file[i], 32);
+        if(ft_strncmp(tmp_strtrim, "NO", 2) == 0)
         {
-            cub3d->texture[0] = ft_strdup(ft_split_texture(ft_split(cub3d->file[i], 32)));
+            cub3d->texture[0] = ft_strdup(ft_split_texture(tmp_split));
             cub3d->total += 1;
         }
-        else if(ft_strncmp(ft_strtrim(cub3d->file[i], " "), "SO", 2) == 0)
+        else if(ft_strncmp(tmp_strtrim, "SO", 2) == 0)
         {
-            cub3d->texture[1] = ft_strdup(ft_split_texture(ft_split(cub3d->file[i], 32)));
+            cub3d->texture[1] = ft_strdup(ft_split_texture(tmp_split));
             cub3d->total += 2;
         }
-        else if(ft_strncmp(ft_strtrim(cub3d->file[i], " "), "WE", 2) == 0)
+        else if(ft_strncmp(tmp_strtrim, "WE", 2) == 0)
         {
-            cub3d->texture[2] = ft_strdup(ft_split_texture(ft_split(cub3d->file[i], 32)));
+            cub3d->texture[2] = ft_strdup(ft_split_texture(tmp_split));
             cub3d->total += 4;
         }
-        else if(ft_strncmp(ft_strtrim(cub3d->file[i], " "), "EA", 2) == 0)
+        else if(ft_strncmp(tmp_strtrim, "EA", 2) == 0)
         {
-            cub3d->texture[3] = ft_strdup(ft_split_texture(ft_split(cub3d->file[i], 32)));
+            cub3d->texture[3] = ft_strdup(ft_split_texture(tmp_split));
             cub3d->total += 8;
         }
+        free(tmp_strtrim);
+        while (tmp_split[j])
+            free(tmp_split[j++]);
+        free(tmp_split);
+        j = 0;
         i++;
     }
     check_extension(cub3d);
     if (cub3d->total != 63)
-        print_error("Map is not correct!\n");   
+        print_error("Map is not correct!\n"); 
     return 0;
 }

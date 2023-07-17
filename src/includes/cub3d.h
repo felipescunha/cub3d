@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/16 20:28:02 by learn            ###   ########.fr       */
+/*   Updated: 2023/07/17 13:32:05 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,7 @@ void	copy_map(t_cub3d *cub3d);
 int		get_range(t_cub3d *cub3d);
 int		fill_rows(t_cub3d *cub3d);
 void	validation_char(t_cub3d *cub3d);
+void	print_map(t_cub3d *cub3d);
+void	starting_values_in_struct(t_cub3d *cub3d);
 
 #endif
