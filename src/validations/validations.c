@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
+/*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:03:51 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/13 16:09:54 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/14 11:52:59 by learn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void check_extension(t_cub3d *cub3d)
 	char	*extension;
     while(i < 4)
     {
-
         fd = open(cub3d->texture[i], O_RDONLY);
         if (fd < 0)
             print_error("In texture file!\n");

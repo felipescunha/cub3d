@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
+/*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:20:09 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/13 17:35:36 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/16 21:11:09 by learn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
+
+void flood_fill_full_map(t_cub3d *cub3d)
+{
+	int i = 0;
+	int j = 0;
+
+	while (cub3d->full_map[i])
+	{
+		j = 0;
+		while (cub3d->full_map[i][j])
+		{
+			if(cub3d->full_map[i][j] == 'N')
+			{
+				cub3d->play_position_x = i;
+				cub3d->play_position_y = j;
+			}
+			j++;
+		}
+		i++;
+	}
+}
 
 void set_value_in_coordinate(t_cub3d *cub3d)
 {
@@ -25,8 +46,10 @@ void set_value_in_coordinate(t_cub3d *cub3d)
 void	print_map(t_cub3d *cub3d)
 {
 	int	i = 0;
-	while (cub3d->map)
-		ft_printf("%s\n", cub3d->map[i++]);
+	ft_printf("array size: %i\n", cub3d->array_size);
+	while (cub3d->full_map[i] && i <=7)
+		ft_printf("%s\n", cub3d->full_map[i++]);
+	ft_printf("%s\n", cub3d->full_map[cub3d->array_size]);
 }
 
 int	main(int argc, char **argv)
@@ -42,7 +65,10 @@ int	main(int argc, char **argv)
 	copy_file(&cub3d, argv[1]);
 	validations(&cub3d);
 	copy_map(&cub3d);
-	print_map(&cub3d); 
+	validation_char(&cub3d);
+	fill_rows(&cub3d);
+	print_map(&cub3d);
+	flood_fill_full_map(&cub3d);
 	free_map(&cub3d);
 	return (0);
 }
