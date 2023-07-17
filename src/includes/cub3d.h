@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/10 22:07:23 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/17 13:32:05 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,20 @@ typedef struct s_cub3d {
 	char    **coordinate;
 	char	**file;
 	char	**map;
+	char	**full_map;
+	char	**texture;
 	char	**verify_ceiling;
 	char	**verify_floor;
+	int 	total;
 	int		index;
+	int		count;
 	int		read_lines;
+	int		play_position_x;
+	int		play_position_y;
+	size_t	array_size;
+	size_t	biggest_line;
+	size_t	temp_line;
+	size_t	temp_collunm;
 	t_data 	img;
 	t_color	ceiling;
 	t_color	floor;
@@ -61,13 +71,17 @@ void	ft_free_array(char **array);
 void 	free_map(t_cub3d *cub3d);
 void	print_error(char *msg);
 void	print_map(t_cub3d *cub3d);
-
-void	check_color_ceiling(t_cub3d *cub3d);
-void	check_color_floor(t_cub3d *cub3d);
-void	check_coordinate(t_cub3d *cub3d);
-void	check_ceiling_floor(t_cub3d *cub3d);
-int		validation_char(t_cub3d *cub3d);
+void	check_color_floor(t_cub3d *cub3d, int i);
+int		validations(t_cub3d *s_cub3d);
+void	check_color_ceiling(t_cub3d *cub3d, int i);
+void	check_coordinate(t_cub3d *cub3d, int i);
+int		check_ceiling_floor(t_cub3d *cub3d, int i);
+char	*my_realloc(char *str, size_t new_size);
 void	copy_map(t_cub3d *cub3d);
 int		get_range(t_cub3d *cub3d);
+int		fill_rows(t_cub3d *cub3d);
+void	validation_char(t_cub3d *cub3d);
+void	print_map(t_cub3d *cub3d);
+void	starting_values_in_struct(t_cub3d *cub3d);
 
 #endif

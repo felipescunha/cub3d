@@ -3,35 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   copy_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learn <learn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:25:35 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/04 20:17:56 by learn            ###   ########.fr       */
+/*   Updated: 2023/07/17 17:24:59 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static char	*remove_new_line(char *str)
+
+
+static char	*remove_new_line(char *line)
 {
 	int	i;
 	int	len;
 
-	if (!str)
+	if (!line)
 		return (NULL);
 	i = 0;
-	len = ft_strlen(str);
+	len = ft_strlen(line);
 
-	while (str[i])
+	while (line[i])
 	{
-		if (str[i] && str[i] == '\n' && len > 1)
+		if (line[i] && line[i] == '\n' && len > 1)
 		{
-			str[i] = '\0';
+			line[i] = '\0';
 			break ;
 		}
 		i++;
 	}
-	return (str);
+	return (line);
 }
 
 void	copy_file(t_cub3d *cub3d, char *argv)
@@ -42,9 +44,14 @@ void	copy_file(t_cub3d *cub3d, char *argv)
 
  	i = 0;
 	fd = open(argv, O_RDONLY);
+	if(fd == -1)
+		return ;
 	line = get_next_line(fd);
+	if(!line)
+		return ;
 	cub3d->file = ft_calloc(cub3d->read_lines + 1, sizeof (char *));
-	cub3d->file[i++] = ft_strtrim(remove_new_line(line), " ");
+	cub3d->file[i++] = remove_new_line(line);
+	
 	while (cub3d->read_lines >= i)
 	{
 		line = get_next_line(fd);
