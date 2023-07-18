@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/17 13:32:05 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/18 18:29:34 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include "../../libft/libft.h"
 # include <stdio.h>
 # include <fcntl.h>
+#include <math.h>
+
+#define mapWidth 24
+#define mapHeight 24
+#define screenWidth 640
+#define screenHeight 640
 
 typedef struct s_data {
 	void	*img;
@@ -39,6 +45,9 @@ typedef struct s_texture {
 }	t_texture;
 
 typedef struct s_cub3d {
+	void 	*mlx_ptr;
+	void 	*win_ptr;
+	
 	char    **coordinate;
 	char	**file;
 	char	**map;
@@ -59,6 +68,17 @@ typedef struct s_cub3d {
 	t_data 	img;
 	t_color	ceiling;
 	t_color	floor;
+
+	//raycast
+	double posX;  //x and y start position
+	double posY;  //x and y start position
+  	double dirX; //initial direction vector
+  	double dirY; //initial direction vector
+  	double planeX; //the 2d raycaster version of camera plane
+  	double planeY; //the 2d raycaster version of camera plane
+  	double time; //time of current frame
+  	double oldTime; //time of previous frame
+
 }	t_cub3d;
 
 size_t	ft_array_size(char **array);
@@ -83,5 +103,5 @@ int		fill_rows(t_cub3d *cub3d);
 void	validation_char(t_cub3d *cub3d);
 void	print_map(t_cub3d *cub3d);
 void	starting_values_in_struct(t_cub3d *cub3d);
-
+void	raycast(t_cub3d *cub3d);
 #endif
