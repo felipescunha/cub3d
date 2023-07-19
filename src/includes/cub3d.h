@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/18 18:29:34 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/19 11:34:27 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,19 @@
 
 #define mapWidth 24
 #define mapHeight 24
-#define screenWidth 640
+#define SCREENWIDTH 640
 #define screenHeight 640
+
+enum {
+	CLICK_X = 17,
+	KEY_ESC = 65307,
+	KEY_UP = 119,
+	KEY_LEFT = 97,
+	KEY_DOWN = 115,
+	KEY_RIGHT = 100,
+	CAM_ARROW_RIGHT = 65363,
+	CAM_ARROW_LEFT = 65361
+};
 
 typedef struct s_data {
 	void	*img;

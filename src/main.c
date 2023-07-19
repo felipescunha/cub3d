@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:20:09 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/18 18:28:20 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/19 11:41:58 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
-
-
 
 void verify_wall(t_cub3d *cub3d)
 {
@@ -43,10 +41,10 @@ int	main(int argc, char **argv)
 	copy_map(&cub3d);
 	validation_char(&cub3d);
 	fill_rows(&cub3d);
-	raycast(&cub3d);
 
 	cub3d.mlx_ptr = mlx_init();
 	cub3d.win_ptr = mlx_new_window(cub3d.mlx_ptr, 640, 640, "Cub3D Raycaster Game");
+	raycast(&cub3d);
 		
 	//verify_wall(&cub3d);
 	print_map(&cub3d);
