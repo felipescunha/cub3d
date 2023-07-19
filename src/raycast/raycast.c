@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:51:18 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/19 17:25:22 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/19 18:16:50 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,14 @@ void print_line(t_cub3d *cub3d, int drawStart, int drawEnd, int color, int x)
 			{
 				texture_y = (int)cub3d->texture_position & (cub3d->textures.north.sprite_height -1);
 				cub3d->texture_position += cub3d->texture_step;
-				color = get_pixel_color(cub3d->textures.north, cub3d->texture_x, texture_y);
-				//color = get_pixel_color(cub3d->textures.north, 10, 10);
-				//printf("cub3d->texture_position %f cub3d->texture_step %f texture_x: %i\n", cub3d->texture_position, cub3d->texture_step, cub3d->texture_x);
+				if( cub3d->side == SIDE_X && cub3d->step_x > 0)
+					color = get_pixel_color(cub3d->textures.north, cub3d->texture_x, texture_y);
+				else if( cub3d->side == SIDE_X && cub3d->step_x <= 0)
+					color = get_pixel_color(cub3d->textures.south, cub3d->texture_x, texture_y);
+				else if( cub3d->side == SIDE_Y && cub3d->step_y > 0)
+					color = get_pixel_color(cub3d->textures.west, cub3d->texture_x, texture_y);
+				else if( cub3d->side == SIDE_Y && cub3d->step_y <= 0)
+					color = get_pixel_color(cub3d->textures.east, cub3d->texture_x, texture_y);
 				my_mlx_pixel_put(cub3d, x, i, color);
 			}	
 		else
@@ -75,12 +80,10 @@ void zero_fill(t_cub3d *cub3d)
 	cub3d->texture_position = 0;
 	cub3d->texture_step = 0;
 	cub3d->perp_wall_dist = 0;
-
 }
 
 void raycast(t_cub3d *cub3d)
 {
-
 	for(int x = 0; x < SCREENWIDTH; x++)
 	{
 		zero_fill(cub3d);
@@ -110,49 +113,45 @@ void raycast(t_cub3d *cub3d)
 		int mapY = (int)cub3d->posY;
 
 		//what direction to step in x or y-direction (either +1 or -1)
-		int stepX;
-		int stepY;
-
+	
 		int hit = 0; //was there a wall hit?
 		//int side; //was a NS or a EW wall hit?
 		cub3d->side = 0;
 		if(cub3d->rayDirX < 0)
 		{
-			stepX = -1;
+			cub3d->step_x = -1;
 			sideDistX = (cub3d->posX - mapX) * deltaDistX;
 		}
 		else
 		{
-			stepX = 1;
+			cub3d->step_x = 1;
 			sideDistX = (mapX + 1.0 - cub3d->posX) * deltaDistX;
 		}
 		if(cub3d->rayDirY < 0)
 		{
-			stepY = -1;
+			cub3d->step_y = -1;
 			sideDistY = (cub3d->posY - mapY) * deltaDistY;
 		}
 		else
 		{
-			stepY = 1;
+			cub3d->step_y = 1;
 			sideDistY = (mapY + 1.0 - cub3d->posY) * deltaDistY;
 		}
-			//which box of the map we're in
-		
-
-		 //perform DDA
+		//which box of the map we're in
+		//perform DDA
 		while(hit == 0)
 		{
 			//jump to next map square, either in x-direction, or in y-direction
 			if(sideDistX < sideDistY)
 			{
 			sideDistX += deltaDistX;
-			mapX += stepX;
+			mapX += cub3d->step_x;
 			cub3d->side = 0;
 			}
 			else
 			{
 			sideDistY += deltaDistY;
-			mapY += stepY;
+			mapY += cub3d->step_y;
 			cub3d->side = 1;
 			}
 			//Check if ray has hit a wall

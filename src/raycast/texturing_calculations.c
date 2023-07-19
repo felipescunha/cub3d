@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:34:13 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/19 17:14:36 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/19 17:48:49 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,3 @@ void texturing_calculations(t_cub3d *cub3d)
     cub3d->texture_position = (cub3d->draw_start - SCREENHEIGHT
             / 2 + cub3d->line_height / 2) * cub3d->texture_step;
 }
-
-/* void    calc_texture_x(t_game *game, t_vars *vars)
-{
-    if (vars->hit_side == SIDE_X)
-        vars->wall_x = game->player.pos_y + vars->perp_wall_dist
-            * vars->ray_dir_y;
-    else
-        vars->wall_x = game->player.pos_x + vars->perp_wall_dist
-            * vars->ray_dir_x;
-    vars->wall_x -= floor(vars->wall_x);
-    vars->tex_x = (int)(vars->wall_x
-            *(double)game->texture.north.sprite_width);
-    if (vars->hit_side == SIDE_X && vars->ray_dir_x > 0)
-        vars->tex_x = game->texture.north.sprite_width - vars->tex_x - 1;
-    if (vars->hit_side == SIDE_Y && vars->ray_dir_y < 0)
-        vars->tex_x = game->texture.north.sprite_width - vars->tex_x - 1;
-    vars->tex_step = 1.0 * game->texture.north.sprite_height
-        / vars->line_height;
-    vars->tex_pos = (vars->draw_start - DISPLAY_HEIGHT
-            / 2 + vars->line_height / 2) * vars->tex_step;
-} */

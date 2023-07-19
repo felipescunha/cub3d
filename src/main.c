@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:20:09 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/19 17:29:00 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/19 18:03:06 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,38 +28,19 @@ int	click_x(t_cub3d *cub3d)
 int    key_press(int keycode, t_cub3d *cub3d)
 {
 	if (keycode == KEY_ESC)
-	{
 		close_game(cub3d);
-	}
-		
 	if (keycode == KEY_UP)
-	{
 		move_forward(cub3d);
-	}	
-		
 	if (keycode == KEY_DOWN)
-	{
 		move_backward(cub3d);
-	}	
-		
 	if (keycode == KEY_LEFT)
-	{
 		move_left(cub3d);
-	}	
-		
 	if (keycode == KEY_RIGHT)
-	{
 		move_right(cub3d);
-	}	
 	if (keycode == CAM_ARROW_RIGHT)
-	{
         rotate_camera(cub3d, ROTATION_RIGHT);
-	}
     if (keycode == CAM_ARROW_LEFT)
-	{
         rotate_camera(cub3d, ROTATION_LEFT);
-	}
-		
     return (0);
 }
 /* void verify_wall(t_cub3d *cub3d)
@@ -99,7 +80,10 @@ int	main(int argc, char **argv)
         &cub3d.img.line_length, &cub3d.img.endian);
 	// end windows
 
-	load_texture(&cub3d, &cub3d.textures.north, cub3d.texture[3]);
+	load_texture(&cub3d, &cub3d.textures.north, cub3d.texture[0]);
+	load_texture(&cub3d, &cub3d.textures.south, cub3d.texture[1]);
+	load_texture(&cub3d, &cub3d.textures.west, cub3d.texture[2]);
+	load_texture(&cub3d, &cub3d.textures.east, cub3d.texture[3]);
 
 	raycast(&cub3d);
 	mlx_hook(cub3d.win_ptr, 2, 1L << 0, key_press, &cub3d);

@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:28:57 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/19 15:08:25 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/19 18:02:04 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void starting_values_in_struct(t_cub3d *cub3d)
 	cub3d->dirX = 1;
 	cub3d->dirY = 0;
 	cub3d->planeX = 0;
+	cub3d->step_x = 0;
+	cub3d->step_y = 0;
 	cub3d->planeY = 0.66;
 	cub3d->move_speed = 0.3;
 	cub3d->rotation_speed = M_PI / 32;

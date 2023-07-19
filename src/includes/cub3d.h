@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/19 17:17:17 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/19 18:03:53 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 # define mapWidth 24
 # define mapHeight 24
-# define SCREENWIDTH 2040
-# define SCREENHEIGHT 1080
+# define SCREENWIDTH 1024
+# define SCREENHEIGHT 1024
 # define ROTATION_LEFT -1
 # define ROTATION_RIGHT 1
 # define SIDE_X 0
@@ -89,6 +89,8 @@ typedef struct s_cub3d {
 	t_color	floor;
 	t_texture textures;
 	//raycast
+	int		step_x;
+	int		step_y;
 	int		side;
 	int 	draw_end;
 	int		draw_start;
