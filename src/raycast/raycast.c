@@ -6,34 +6,88 @@
 /*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:51:18 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/19 11:17:36 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/19 17:25:22 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+int    get_addr_locale(t_data img, int x, int y)
+{
+    return (y * img.line_length + x * (img.bits_per_pixel / 8));
+}
+
+void    my_mlx_pixel_put(t_cub3d *cub3d, int x, int y, int color)
+{
+    char    *dest;
+
+    dest = cub3d->img.addr + get_addr_locale(cub3d->img, x, y);
+    *(unsigned int *)dest = color;
+}
+
+unsigned int	get_pixel_color(t_data img, int x, int y)
+{
+    char    *dest;
+
+    dest = img.addr + get_addr_locale(img, x, y);
+    return (*(unsigned int *)dest);
+}
+
+
 void print_line(t_cub3d *cub3d, int drawStart, int drawEnd, int color, int x)
 {
-	while(drawStart < drawEnd)
+	int i = 0;
+	int texture_y = 0;
+
+	while ( i <= SCREENHEIGHT)
 	{
-		mlx_pixel_put(cub3d->mlx_ptr, cub3d->win_ptr, x, drawStart, color);
-		drawStart++;
+		if(i < drawStart)
+			my_mlx_pixel_put(cub3d, x, i, create_trgb(0, cub3d->ceiling.red, cub3d->ceiling.green, cub3d->ceiling.blue));
+		else if( i > drawStart && i < drawEnd)
+			{
+				texture_y = (int)cub3d->texture_position & (cub3d->textures.north.sprite_height -1);
+				cub3d->texture_position += cub3d->texture_step;
+				color = get_pixel_color(cub3d->textures.north, cub3d->texture_x, texture_y);
+				//color = get_pixel_color(cub3d->textures.north, 10, 10);
+				//printf("cub3d->texture_position %f cub3d->texture_step %f texture_x: %i\n", cub3d->texture_position, cub3d->texture_step, cub3d->texture_x);
+				my_mlx_pixel_put(cub3d, x, i, color);
+			}	
+		else
+			my_mlx_pixel_put(cub3d, x, i, create_trgb(0, cub3d->floor.red, cub3d->floor.green, cub3d->floor.blue));
+		i++;
 	}
 }
 
-/* int	create_trgb(int t, int r, int g, int b)
+void zero_fill(t_cub3d *cub3d)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
-} */
+	cub3d->rayDirX = 0;
+	cub3d->rayDirY = 0;
+	cub3d->line_height = 0;
+	cub3d->draw_end = 0;
+	cub3d->draw_start = 0;
+	cub3d->wall_x = 0;
+	cub3d->texture_x = 0;
+	cub3d->texture_position = 0;
+	cub3d->texture_step = 0;
+	cub3d->perp_wall_dist = 0;
+
+}
 
 void raycast(t_cub3d *cub3d)
 {
+
 	for(int x = 0; x < SCREENWIDTH; x++)
 	{
+		zero_fill(cub3d);
 		//calculate ray position and direction
 		double cameraX = 2 * x / (double)SCREENWIDTH - 1; //x-coordinate in camera space
-		double rayDirX = cub3d->dirX + cub3d->planeX * cameraX;
-		double rayDirY = cub3d->dirY + cub3d->planeY * cameraX;
+		cub3d->rayDirX = cub3d->dirX + cub3d->planeX * cameraX;
+		cub3d->rayDirY = cub3d->dirY + cub3d->planeY * cameraX;
 
 		//length of ray from current position to next x or y-side
 		double sideDistX;
@@ -42,15 +96,14 @@ void raycast(t_cub3d *cub3d)
 		double deltaDistY;
 
 		//length of ray from one x or y-side to next x or y-side
-		if(rayDirX == 0)
+		if(cub3d->rayDirX == 0)
 			deltaDistX = 1e30;
 		else
-			deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
+			deltaDistX = sqrt(1 + (cub3d->rayDirY * cub3d->rayDirY) / (cub3d->rayDirX * cub3d->rayDirX));
 		if(deltaDistY == 0)
 			deltaDistY = 1e30;
 		else
-			deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
-		double perpWallDist;
+			deltaDistY = sqrt(1 + (cub3d->rayDirX * cub3d->rayDirX) / (cub3d->rayDirY * cub3d->rayDirY));
 
 		//which box of the map we're in
 		int mapX = (int)cub3d->posX;
@@ -61,8 +114,9 @@ void raycast(t_cub3d *cub3d)
 		int stepY;
 
 		int hit = 0; //was there a wall hit?
-		int side; //was a NS or a EW wall hit?
-		if(rayDirX < 0)
+		//int side; //was a NS or a EW wall hit?
+		cub3d->side = 0;
+		if(cub3d->rayDirX < 0)
 		{
 			stepX = -1;
 			sideDistX = (cub3d->posX - mapX) * deltaDistX;
@@ -72,7 +126,7 @@ void raycast(t_cub3d *cub3d)
 			stepX = 1;
 			sideDistX = (mapX + 1.0 - cub3d->posX) * deltaDistX;
 		}
-		if(rayDirY < 0)
+		if(cub3d->rayDirY < 0)
 		{
 			stepY = -1;
 			sideDistY = (cub3d->posY - mapY) * deltaDistY;
@@ -93,36 +147,41 @@ void raycast(t_cub3d *cub3d)
 			{
 			sideDistX += deltaDistX;
 			mapX += stepX;
-			side = 0;
+			cub3d->side = 0;
 			}
 			else
 			{
 			sideDistY += deltaDistY;
 			mapY += stepY;
-			side = 1;
+			cub3d->side = 1;
 			}
 			//Check if ray has hit a wall
 			if(cub3d->map[mapY][mapX] != '0')
 				hit = 1;
       	}
 
-		if(side == 0)
-			perpWallDist = (sideDistX - deltaDistX);
+		if(cub3d->side == 0)
+			cub3d->perp_wall_dist = (sideDistX - deltaDistX);
 		else
-			perpWallDist = (sideDistY - deltaDistY);
+			cub3d->perp_wall_dist = (sideDistY - deltaDistY);
 
 		//Calculate height of line to draw on screen
-		int lineHeight = (int)(screenHeight / perpWallDist);
+		cub3d->line_height = (int)(SCREENHEIGHT / cub3d->perp_wall_dist);
 
 		//calculate lowest and highest pixel to fill in current stripe
-		int drawStart = -lineHeight / 2 + screenHeight / 2;
-		if(drawStart < 0)
-			drawStart = 0;
-		int drawEnd = lineHeight / 2 + screenHeight / 2;
-		if(drawEnd >= screenHeight)
-			drawEnd = screenHeight - 1;
+		cub3d->draw_start = - cub3d->line_height / 2 + SCREENHEIGHT / 2;
+		if(cub3d->draw_start < 0)
+			cub3d->draw_start = 0;
+		cub3d->draw_end = cub3d->line_height / 2 + SCREENHEIGHT / 2;
+		if(cub3d->draw_end >= SCREENHEIGHT)
+			cub3d->draw_end = SCREENHEIGHT - 1;
 		
 		//draw the pixels of the stripe as a vertical line
-		print_line(cub3d, drawStart, drawEnd, 0x0000FFFF, x);
+		texturing_calculations(cub3d);
+		print_line(cub3d, cub3d->draw_start, cub3d->draw_end, 0x00FF00, x);
 	}
+
+	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr, cub3d->img.img, 0, 0);
+   	mlx_destroy_image(cub3d->mlx_ptr, cub3d->img.img);
+    cub3d->img.img = mlx_new_image(cub3d->mlx_ptr, SCREENWIDTH, SCREENHEIGHT);
 }

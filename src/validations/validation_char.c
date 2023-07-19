@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 20:07:38 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/19 11:33:00 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/19 12:30:52 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	validation_char(t_cub3d *cub3d)
 				|| cub3d->map[i][j] == 'E'))
 			{
 				flag++;
+				cub3d->map[i][j] = '0';
 				cub3d->posX = j;
 				cub3d->posY = i;
 			}

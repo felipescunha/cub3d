@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:03:51 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/17 17:13:51 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/19 16:58:11 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int  validations(t_cub3d *cub3d)
         if(ft_strncmp(tmp_strtrim, "NO", 2) == 0)
         {
             cub3d->texture[0] = ft_strdup(ft_split_texture(tmp_split));
+            printf("%s", cub3d->texture[0]);
             cub3d->total += 1;
         }
         else if(ft_strncmp(tmp_strtrim, "SO", 2) == 0)

@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/19 11:34:27 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/19 17:17:17 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,17 @@
 # include "../../libft/libft.h"
 # include <stdio.h>
 # include <fcntl.h>
-#include <math.h>
+# include <math.h>
 
-#define mapWidth 24
-#define mapHeight 24
-#define SCREENWIDTH 640
-#define screenHeight 640
+# define mapWidth 24
+# define mapHeight 24
+# define SCREENWIDTH 2040
+# define SCREENHEIGHT 1080
+# define ROTATION_LEFT -1
+# define ROTATION_RIGHT 1
+# define SIDE_X 0
+# define SIDE_Y 1
+
 
 enum {
 	CLICK_X = 17,
@@ -36,10 +41,13 @@ enum {
 };
 
 typedef struct s_data {
-	void	*img;
-	int		length;
-	int		width;
-	int		height;
+    void    *img;
+    char    *addr;
+    int        bits_per_pixel;
+    int        line_length;
+    int        endian;
+    int        sprite_width;
+    int        sprite_height;
 }	t_data;
 
 typedef struct s_color {
@@ -79,16 +87,30 @@ typedef struct s_cub3d {
 	t_data 	img;
 	t_color	ceiling;
 	t_color	floor;
-
+	t_texture textures;
 	//raycast
-	double posX;  //x and y start position
-	double posY;  //x and y start position
-  	double dirX; //initial direction vector
-  	double dirY; //initial direction vector
-  	double planeX; //the 2d raycaster version of camera plane
-  	double planeY; //the 2d raycaster version of camera plane
-  	double time; //time of current frame
-  	double oldTime; //time of previous frame
+	int		side;
+	int 	draw_end;
+	int		draw_start;
+	int		texture_x;
+	int		line_height;
+	double	posX;  //x and y start position
+	double	posY;  //x and y start position
+  	double	dirX; //initial direction vector
+  	double	dirY; //initial direction vector
+  	double	planeX; //the 2d raycaster version of camera plane
+  	double	planeY; //the 2d raycaster version of camera plane
+  	double	time; //time of current frame
+  	double	oldTime; //time of previous frame
+	
+	double	wall_x;
+	double	rayDirX;
+	double	rayDirY;
+	double	move_speed;
+	double	texture_step;
+	double	rotation_speed;
+	double	perp_wall_dist;
+	double	texture_position;
 
 }	t_cub3d;
 
@@ -115,4 +137,11 @@ void	validation_char(t_cub3d *cub3d);
 void	print_map(t_cub3d *cub3d);
 void	starting_values_in_struct(t_cub3d *cub3d);
 void	raycast(t_cub3d *cub3d);
+void	move_forward(t_cub3d *cub3d);
+void	move_backward(t_cub3d *cub3d);
+void	move_right(t_cub3d *cub3d);
+void	move_left(t_cub3d *cub3d);
+void	rotate_camera(t_cub3d *cub3d, int direction);
+void	load_texture(t_cub3d *cub3d, t_data *texture, char *path);
+void	texturing_calculations(t_cub3d *cub3d);
 #endif

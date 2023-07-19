@@ -1,4 +1,4 @@
-CC = cc -fsanitize=address 
+CC = cc #-fsanitize=address 
 NAME = cub3D
 LIBFT_A	= libft.a
 CFLAGS = -Wall -Wextra -Werror -g
@@ -13,7 +13,8 @@ SRCS =	src/main.c \
 		src/validations/validation_map_name.c src/validations/validation_char.c  \
 		src/validations/check_color_floor.c src/validations/check_color_ceiling.c \
 		src/validations/check_ceiling_floor.c src/validations/validations.c \
-		src/raycast/raycast.c
+		src/raycast/raycast.c src/raycast/load_texture.c src/raycast/texturing_calculations.c \
+		src/controllers/movements.c
 
 OBJS = $(SRCS:.c=.o)
 LIBFT = make -C libft && cp libft/libft.a ./
