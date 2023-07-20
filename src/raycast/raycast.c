@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:51:18 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/19 18:16:50 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/20 17:22:19 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,20 +93,17 @@ void raycast(t_cub3d *cub3d)
 		cub3d->rayDirY = cub3d->dirY + cub3d->planeY * cameraX;
 
 		//length of ray from current position to next x or y-side
-		double sideDistX;
-		double sideDistY;
-		double deltaDistX;
-		double deltaDistY;
+
 
 		//length of ray from one x or y-side to next x or y-side
 		if(cub3d->rayDirX == 0)
-			deltaDistX = 1e30;
+			cub3d->deltaDistX = 1e30;
 		else
-			deltaDistX = sqrt(1 + (cub3d->rayDirY * cub3d->rayDirY) / (cub3d->rayDirX * cub3d->rayDirX));
-		if(deltaDistY == 0)
-			deltaDistY = 1e30;
+			cub3d->deltaDistX = sqrt(1 + (cub3d->rayDirY * cub3d->rayDirY) / (cub3d->rayDirX * cub3d->rayDirX));
+		if(cub3d->deltaDistY == 0)
+			cub3d->deltaDistY = 1e30;
 		else
-			deltaDistY = sqrt(1 + (cub3d->rayDirX * cub3d->rayDirX) / (cub3d->rayDirY * cub3d->rayDirY));
+			cub3d->deltaDistY = sqrt(1 + (cub3d->rayDirX * cub3d->rayDirX) / (cub3d->rayDirY * cub3d->rayDirY));
 
 		//which box of the map we're in
 		int mapX = (int)cub3d->posX;
@@ -120,37 +117,37 @@ void raycast(t_cub3d *cub3d)
 		if(cub3d->rayDirX < 0)
 		{
 			cub3d->step_x = -1;
-			sideDistX = (cub3d->posX - mapX) * deltaDistX;
+			cub3d->sideDistX = (cub3d->posX - mapX) * cub3d->deltaDistX;
 		}
 		else
 		{
 			cub3d->step_x = 1;
-			sideDistX = (mapX + 1.0 - cub3d->posX) * deltaDistX;
+			cub3d->sideDistX = (mapX + 1.0 - cub3d->posX) * cub3d->deltaDistX;
 		}
 		if(cub3d->rayDirY < 0)
 		{
 			cub3d->step_y = -1;
-			sideDistY = (cub3d->posY - mapY) * deltaDistY;
+			cub3d->sideDistY = (cub3d->posY - mapY) * cub3d->deltaDistY;
 		}
 		else
 		{
 			cub3d->step_y = 1;
-			sideDistY = (mapY + 1.0 - cub3d->posY) * deltaDistY;
+			cub3d->sideDistY = (mapY + 1.0 - cub3d->posY) * cub3d->deltaDistY;
 		}
 		//which box of the map we're in
 		//perform DDA
 		while(hit == 0)
 		{
 			//jump to next map square, either in x-direction, or in y-direction
-			if(sideDistX < sideDistY)
+			if(cub3d->sideDistX < cub3d->sideDistY)
 			{
-			sideDistX += deltaDistX;
+			cub3d->sideDistX += cub3d->deltaDistX;
 			mapX += cub3d->step_x;
 			cub3d->side = 0;
 			}
 			else
 			{
-			sideDistY += deltaDistY;
+			cub3d->sideDistY += cub3d->deltaDistY;
 			mapY += cub3d->step_y;
 			cub3d->side = 1;
 			}
@@ -160,9 +157,9 @@ void raycast(t_cub3d *cub3d)
       	}
 
 		if(cub3d->side == 0)
-			cub3d->perp_wall_dist = (sideDistX - deltaDistX);
+			cub3d->perp_wall_dist = (cub3d->sideDistX - cub3d->deltaDistX);
 		else
-			cub3d->perp_wall_dist = (sideDistY - deltaDistY);
+			cub3d->perp_wall_dist = (cub3d->sideDistY - cub3d->deltaDistY);
 
 		//Calculate height of line to draw on screen
 		cub3d->line_height = (int)(SCREENHEIGHT / cub3d->perp_wall_dist);

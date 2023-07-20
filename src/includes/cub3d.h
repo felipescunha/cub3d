@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/19 18:03:53 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/20 17:18:24 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,12 @@ typedef struct s_cub3d {
   	double	planeY; //the 2d raycaster version of camera plane
   	double	time; //time of current frame
   	double	oldTime; //time of previous frame
+
+
+	double sideDistX;
+	double sideDistY;
+	double deltaDistX;
+	double deltaDistY;
 	
 	double	wall_x;
 	double	rayDirX;
