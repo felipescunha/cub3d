@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 20:07:38 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/17 14:16:46 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/19 12:30:52 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,12 @@ void	validation_char(t_cub3d *cub3d)
 			if (cub3d->map[i] && (cub3d->map[i][j] == 'N'
 				|| cub3d->map[i][j] == 'S' || cub3d->map[i][j] == 'W'
 				|| cub3d->map[i][j] == 'E'))
-					flag++;
-
+			{
+				flag++;
+				cub3d->map[i][j] = '0';
+				cub3d->posX = j;
+				cub3d->posY = i;
+			}
 			if (cub3d->map[i] && (cub3d->map[i][j] != 32
 				&& cub3d->map[i][j] != '1' && cub3d->map[i][j] != '0'
 				&& cub3d->map[i][j] != 'N' && cub3d->map[i][j] != 'S'
@@ -38,6 +42,7 @@ void	validation_char(t_cub3d *cub3d)
 		}
 		i++;
 	}
+	printf("i: %li | j: %i\n", i, j);
 	if (flag == 0)
 		print_error("Need a position N, S, W, or E \n");
 	if (flag > 1 )
