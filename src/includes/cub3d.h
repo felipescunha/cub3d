@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
+/*   By: marolive <marolive@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/20 21:23:15 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/20 23:31:49 by marolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,12 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define mapWidth 24
-# define mapHeight 24
 # define SCREENWIDTH 1024
 # define SCREENHEIGHT 1024
 # define ROTATION_LEFT -1
 # define ROTATION_RIGHT 1
 # define SIDE_X 0
 # define SIDE_Y 1
-
 
 enum {
 	CLICK_X = 17,
@@ -41,13 +38,13 @@ enum {
 };
 
 typedef struct s_data {
-    void    *img;
-    char    *addr;
-    int        bits_per_pixel;
-    int        line_length;
-    int        endian;
-    int        sprite_width;
-    int        sprite_height;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		sprite_width;
+	int		sprite_height;
 }	t_data;
 
 typedef struct s_color {
@@ -64,62 +61,56 @@ typedef struct s_texture {
 }	t_texture;
 
 typedef struct s_cub3d {
-	void 	*mlx_ptr;
-	void 	*win_ptr;
-	
-	char    **coordinate;
-	char	**file;
-	char	**map;
-	char	**full_map;
-	char	**texture;
-	char	**verify_ceiling;
-	char	**verify_floor;
-	int 	total;
-	int		index;
-	int		count;
-	int		read_lines;
-	int		play_position_x;
-	int		play_position_y;
-	size_t	array_size;
-	size_t	biggest_line;
-	size_t	temp_line;
-	size_t	temp_collunm;
-	t_data 	img;
-	t_color	ceiling;
-	t_color	floor;
-	t_texture textures;
-	//raycast
-	int		step_x;
-	int		step_y;
-	int		side;
-	int 	draw_end;
-	int		draw_start;
-	int		texture_x;
-	int		line_height;
-	double	pos_x;  //x and y start position
-	double	pos_y;  //x and y start position
-  	double	dirX; //initial direction vector
-  	double	dirY; //initial direction vector
-  	double	planeX; //the 2d raycaster version of camera plane
-  	double	planeY; //the 2d raycaster version of camera plane
-  	double	time; //time of current frame
-  	double	oldTime; //time of previous frame
-
-
-	double sideDistX;
-	double sideDistY;
-	double deltaDistX;
-	double deltaDistY;
-	
-	double	wall_x;
-	double	rayDirX;
-	double	rayDirY;
-	double	move_speed;
-	double	texture_step;
-	double	rotation_speed;
-	double	perp_wall_dist;
-	double	texture_position;
-
+	int			total;
+	int			index;
+	int			count;
+	int			read_lines;
+	int			play_position_x;
+	int			play_position_y;
+	int			step_x;
+	int			step_y;
+	int			side;
+	int			draw_end;
+	int			draw_start;
+	int			texture_x;
+	int			line_height;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	char		**coordinate;
+	char		**file;
+	char		**map;
+	char		**full_map;
+	char		**texture;
+	char		**verify_ceiling;
+	char		**verify_floor;
+	size_t		array_size;
+	size_t		biggest_line;
+	size_t		temp_line;
+	size_t		temp_collunm;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		time;
+	double		old_time;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		wall_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		move_speed;
+	double		texture_step;
+	double		rotation_speed;
+	double		perp_wall_dist;
+	double		texture_position;
+	t_data		img;
+	t_color		ceiling;
+	t_color		floor;
+	t_texture	textures;
 }	t_cub3d;
 
 size_t	ft_array_size(char **array);
@@ -129,7 +120,7 @@ void	read_map(t_cub3d *cub3d, char *argv);
 void	copy_file(t_cub3d *cub3d, char *argv);
 void	validation_map_name(int argc, char *argv);
 void	ft_free_array(char **array);
-void 	free_map(t_cub3d *cub3d);
+void	free_map(t_cub3d *cub3d);
 void	print_error(char *msg);
 void	print_map(t_cub3d *cub3d);
 void	check_color_floor(t_cub3d *cub3d, int i);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
+/*   By: marolive <marolive@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:51:18 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/20 21:31:10 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/20 22:31:47 by marolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void print_line(t_cub3d *cub3d, int drawStart, int drawEnd, int color, int x)
 
 void zero_fill(t_cub3d *cub3d)
 {
-	cub3d->rayDirX = 0;
-	cub3d->rayDirY = 0;
+	cub3d->ray_dir_x = 0;
+	cub3d->ray_dir_y = 0;
 	cub3d->line_height = 0;
 	cub3d->draw_end = 0;
 	cub3d->draw_start = 0;
@@ -89,21 +89,21 @@ void raycast(t_cub3d *cub3d)
 		zero_fill(cub3d);
 		//calculate ray position and direction
 		double cameraX = 2 * x / (double)SCREENWIDTH - 1; //x-coordinate in camera space
-		cub3d->rayDirX = cub3d->dirX + cub3d->planeX * cameraX;
-		cub3d->rayDirY = cub3d->dirY + cub3d->planeY * cameraX;
+		cub3d->ray_dir_x = cub3d->dir_x + cub3d->plane_x * cameraX;
+		cub3d->ray_dir_y = cub3d->dir_y + cub3d->plane_y * cameraX;
 
 		//length of ray from current position to next x or y-side
 
 
 		//length of ray from one x or y-side to next x or y-side
-		if(cub3d->rayDirX == 0)
-			cub3d->deltaDistX = 1e30;
+		if(cub3d->ray_dir_x == 0)
+			cub3d->delta_dist_x = 1e30;
 		else
-			cub3d->deltaDistX = sqrt(1 + (cub3d->rayDirY * cub3d->rayDirY) / (cub3d->rayDirX * cub3d->rayDirX));
-		if(cub3d->deltaDistY == 0)
-			cub3d->deltaDistY = 1e30;
+			cub3d->delta_dist_x = sqrt(1 + (cub3d->ray_dir_y * cub3d->ray_dir_y) / (cub3d->ray_dir_x * cub3d->ray_dir_x));
+		if(cub3d->delta_dist_y == 0)
+			cub3d->delta_dist_y = 1e30;
 		else
-			cub3d->deltaDistY = sqrt(1 + (cub3d->rayDirX * cub3d->rayDirX) / (cub3d->rayDirY * cub3d->rayDirY));
+			cub3d->delta_dist_y = sqrt(1 + (cub3d->ray_dir_x * cub3d->ray_dir_x) / (cub3d->ray_dir_y * cub3d->ray_dir_y));
 
 		//which box of the map we're in
 		
@@ -115,40 +115,40 @@ void raycast(t_cub3d *cub3d)
 		int hit = 0; //was there a wall hit?
 		//int side; //was a NS or a EW wall hit?
 		cub3d->side = 0;
-		if(cub3d->rayDirX < 0)
+		if(cub3d->ray_dir_x < 0)
 		{
 			cub3d->step_x = -1;
-			cub3d->sideDistX = (cub3d->pos_x - mapX) * cub3d->deltaDistX;
+			cub3d->side_dist_x = (cub3d->pos_x - mapX) * cub3d->delta_dist_x;
 		}
 		else
 		{
 			cub3d->step_x = 1;
-			cub3d->sideDistX = (mapX + 1.0 - cub3d->pos_x) * cub3d->deltaDistX;
+			cub3d->side_dist_x = (mapX + 1.0 - cub3d->pos_x) * cub3d->delta_dist_x;
 		}
-		if(cub3d->rayDirY < 0)
+		if(cub3d->ray_dir_y < 0)
 		{
 			cub3d->step_y = -1;
-			cub3d->sideDistY = (cub3d->pos_y - mapY) * cub3d->deltaDistY;
+			cub3d->side_dist_y = (cub3d->pos_y - mapY) * cub3d->delta_dist_y;
 		}
 		else
 		{
 			cub3d->step_y = 1;
-			cub3d->sideDistY = (mapY + 1.0 - cub3d->pos_y) * cub3d->deltaDistY;
+			cub3d->side_dist_y = (mapY + 1.0 - cub3d->pos_y) * cub3d->delta_dist_y;
 		}
 		//which box of the map we're inpos_x
 		//perform DDA
 		while(hit == 0)
 		{
 			//jump to next map square, either in x-direction, or in y-direction
-			if(cub3d->sideDistX < cub3d->sideDistY)
+			if(cub3d->side_dist_x < cub3d->side_dist_y)
 			{
-			cub3d->sideDistX += cub3d->deltaDistX;
+			cub3d->side_dist_x += cub3d->delta_dist_x;
 			mapX += cub3d->step_x;
 			cub3d->side = 0;
 			}
 			else
 			{
-			cub3d->sideDistY += cub3d->deltaDistY;
+			cub3d->side_dist_y += cub3d->delta_dist_y;
 			mapY += cub3d->step_y;
 			cub3d->side = 1;
 			}
@@ -158,9 +158,9 @@ void raycast(t_cub3d *cub3d)
       	}
 
 		if(cub3d->side == 0)
-			cub3d->perp_wall_dist = (cub3d->sideDistX - cub3d->deltaDistX);
+			cub3d->perp_wall_dist = (cub3d->side_dist_x - cub3d->delta_dist_x);
 		else
-			cub3d->perp_wall_dist = (cub3d->sideDistY - cub3d->deltaDistY);
+			cub3d->perp_wall_dist = (cub3d->side_dist_y - cub3d->delta_dist_y);
 
 		//Calculate height of line to draw on screen
 		cub3d->line_height = (int)(SCREENHEIGHT / cub3d->perp_wall_dist);
