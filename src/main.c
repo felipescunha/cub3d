@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:20:09 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/21 17:06:33 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/21 17:22:41 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	main(int argc, char **argv)
 	load_texture(&cub3d, &cub3d.textures.south, cub3d.texture[1]);
 	load_texture(&cub3d, &cub3d.textures.west, cub3d.texture[2]);
 	load_texture(&cub3d, &cub3d.textures.east, cub3d.texture[3]);
-
+	mlx_hook(cub3d.win_ptr, 17, 0, click_x, &cub3d);
 	mlx_hook(cub3d.win_ptr, 2, 1L << 0, key_press, &cub3d);
 	position_player_in_map(&cub3d);
 	//verify_wall(&cub3d);
