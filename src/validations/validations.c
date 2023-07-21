@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marolive <marolive@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:03:51 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/20 20:48:05 by marolive         ###   ########.fr       */
+/*   Updated: 2023/07/21 12:35:56 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	validations(t_cub3d *cub3d)
 	i = 0;
 	j = 0;
 	size = get_range(cub3d);
-	cub3d->index = 0;
+	cub3d->i = 0;
 	while (i < size)
 	{
 		check_color_ceiling(cub3d, i);
