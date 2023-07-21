@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:20:09 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/21 18:50:05 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/21 18:57:27 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 	copy_map(&cub3d);
 	validation_char(&cub3d);
 	fill_rows(&cub3d);
-	//validation_wall(&cub3d);
+	validation_wall(&cub3d);
 	cub3d.mlx_ptr = mlx_init();
 	cub3d.win_ptr = mlx_new_window(cub3d.mlx_ptr, SCREENWIDTH, SCREENHEIGHT, "Cub3D Raycaster Game");
 	cub3d.img.img = mlx_new_image(cub3d.mlx_ptr, SCREENWIDTH, SCREENHEIGHT);
