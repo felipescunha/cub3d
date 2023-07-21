@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: learn <learn@student.42.fr>                +#+  +:+       +#+         #
+#    By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/19 16:09:01 by fecunha           #+#    #+#              #
-#    Updated: 2023/07/02 00:52:23 by learn            ###   ########.fr        #
+#    Created: 2023/07/21 19:43:41 by fecunha           #+#    #+#              #
+#    Updated: 2023/07/21 19:43:42 by fecunha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c \
 	   ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_toupper.c ft_tolower.c ft_strchr.c \
