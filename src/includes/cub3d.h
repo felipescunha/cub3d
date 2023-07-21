@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/21 20:08:19 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/21 20:20:39 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct s_texture {
 typedef struct s_cub3d {
 	int			total;
 	int			i;
-	int			j;
 	int			count;
 	int			read_lines;
 	char		target_player;
@@ -84,6 +83,7 @@ typedef struct s_cub3d {
 	char		**texture;
 	char		**verify_ceiling;
 	char		**verify_floor;
+	size_t		j;
 	size_t		array_size;
 	size_t		biggest_line;
 	size_t		temp_line;
