@@ -18,5 +18,5 @@ void	print_map(t_cub3d *cub3d)
 
 	i = 0;
 	while (cub3d->full_map[i])
-		ft_printf("%s\n", cub3d->full_map[i++]);
+		printf("%s\n", cub3d->full_map[i++]);
 }

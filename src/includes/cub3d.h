@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/20 17:18:24 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/20 21:23:15 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ typedef struct s_cub3d {
 	int		draw_start;
 	int		texture_x;
 	int		line_height;
-	double	posX;  //x and y start position
-	double	posY;  //x and y start position
+	double	pos_x;  //x and y start position
+	double	pos_y;  //x and y start position
   	double	dirX; //initial direction vector
   	double	dirY; //initial direction vector
   	double	planeX; //the 2d raycaster version of camera plane

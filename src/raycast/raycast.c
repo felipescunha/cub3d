@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:51:18 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/20 17:22:19 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/20 21:31:10 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,9 @@ void raycast(t_cub3d *cub3d)
 			cub3d->deltaDistY = sqrt(1 + (cub3d->rayDirX * cub3d->rayDirX) / (cub3d->rayDirY * cub3d->rayDirY));
 
 		//which box of the map we're in
-		int mapX = (int)cub3d->posX;
-		int mapY = (int)cub3d->posY;
+		
+		int mapX = (int)cub3d->pos_x;
+		int mapY = (int)cub3d->pos_y;
 
 		//what direction to step in x or y-direction (either +1 or -1)
 	
@@ -117,24 +118,24 @@ void raycast(t_cub3d *cub3d)
 		if(cub3d->rayDirX < 0)
 		{
 			cub3d->step_x = -1;
-			cub3d->sideDistX = (cub3d->posX - mapX) * cub3d->deltaDistX;
+			cub3d->sideDistX = (cub3d->pos_x - mapX) * cub3d->deltaDistX;
 		}
 		else
 		{
 			cub3d->step_x = 1;
-			cub3d->sideDistX = (mapX + 1.0 - cub3d->posX) * cub3d->deltaDistX;
+			cub3d->sideDistX = (mapX + 1.0 - cub3d->pos_x) * cub3d->deltaDistX;
 		}
 		if(cub3d->rayDirY < 0)
 		{
 			cub3d->step_y = -1;
-			cub3d->sideDistY = (cub3d->posY - mapY) * cub3d->deltaDistY;
+			cub3d->sideDistY = (cub3d->pos_y - mapY) * cub3d->deltaDistY;
 		}
 		else
 		{
 			cub3d->step_y = 1;
-			cub3d->sideDistY = (mapY + 1.0 - cub3d->posY) * cub3d->deltaDistY;
+			cub3d->sideDistY = (mapY + 1.0 - cub3d->pos_y) * cub3d->deltaDistY;
 		}
-		//which box of the map we're in
+		//which box of the map we're inpos_x
 		//perform DDA
 		while(hit == 0)
 		{
