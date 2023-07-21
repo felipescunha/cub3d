@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 20:07:38 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/19 12:30:52 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/20 21:35:20 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	validation_char(t_cub3d *cub3d)
 			{
 				flag++;
 				cub3d->map[i][j] = '0';
-				cub3d->posX = j;
-				cub3d->posY = i;
+				cub3d->pos_x = j + 0.5;
+				cub3d->pos_y = i + 0.5;
 			}
 			if (cub3d->map[i] && (cub3d->map[i][j] != 32
 				&& cub3d->map[i][j] != '1' && cub3d->map[i][j] != '0'

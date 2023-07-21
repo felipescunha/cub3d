@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:58:46 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/19 14:42:27 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/20 21:36:56 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,37 @@
 
 void move_forward(t_cub3d *cub3d)
 {
-    if(cub3d->map[(int)cub3d->posY][(int)(cub3d->posX + cub3d->dirX * cub3d->move_speed)] == '0')
-        cub3d->posX += cub3d->dirX *cub3d->move_speed;
-    if(cub3d->map[(int)(cub3d->posY + cub3d->dirY * cub3d->move_speed)][(int)(cub3d->posX)] == '0')
-        cub3d->posY += cub3d->dirY * cub3d->move_speed;
+    if(cub3d->map[(int)cub3d->pos_y][(int)(cub3d->pos_x + cub3d->dirX * cub3d->move_speed)] == '0')
+        cub3d->pos_x += cub3d->dirX *cub3d->move_speed;
+    if(cub3d->map[(int)(cub3d->pos_y + cub3d->dirY * cub3d->move_speed)][(int)(cub3d->pos_x)] == '0')
+        cub3d->pos_y += cub3d->dirY * cub3d->move_speed;
     raycast(cub3d);
 }
 
 void move_backward(t_cub3d *cub3d)
 {
-    if(cub3d->map[(int)cub3d->posY][(int)(cub3d->posX - cub3d->dirX * cub3d->move_speed)] == '0')
-        cub3d->posX -= cub3d->dirX *cub3d->move_speed;
-    if(cub3d->map[(int)(cub3d->posY - cub3d->dirY * cub3d->move_speed)][(int)(cub3d->posX)] == '0')
-        cub3d->posY -= cub3d->dirY * cub3d->move_speed;
+    if(cub3d->map[(int)cub3d->pos_y][(int)(cub3d->pos_x - cub3d->dirX * cub3d->move_speed)] == '0')
+        cub3d->pos_x -= cub3d->dirX *cub3d->move_speed;
+    if(cub3d->map[(int)(cub3d->pos_y - cub3d->dirY * cub3d->move_speed)][(int)(cub3d->pos_x)] == '0')
+        cub3d->pos_y -= cub3d->dirY * cub3d->move_speed;
     raycast(cub3d);
 }
 
 void move_right(t_cub3d *cub3d)
 {
-    if(cub3d->map[(int)cub3d->posY][(int)(cub3d->posX + cub3d->planeX * cub3d->move_speed)] == '0')
-        cub3d->posX += cub3d->planeX *cub3d->move_speed;
-    if(cub3d->map[(int)(cub3d->posY + cub3d->planeY * cub3d->move_speed)][(int)(cub3d->posX)] == '0')
-        cub3d->posY += cub3d->planeY * cub3d->move_speed;
+    if(cub3d->map[(int)cub3d->pos_y][(int)(cub3d->pos_x + cub3d->planeX * cub3d->move_speed)] == '0')
+        cub3d->pos_x += cub3d->planeX *cub3d->move_speed;
+    if(cub3d->map[(int)(cub3d->pos_y + cub3d->planeY * cub3d->move_speed)][(int)(cub3d->pos_x)] == '0')
+        cub3d->pos_y += cub3d->planeY * cub3d->move_speed;
     raycast(cub3d);
 }
 
 void move_left(t_cub3d *cub3d)
 {
-    if(cub3d->map[(int)cub3d->posY][(int)(cub3d->posX - cub3d->planeX * cub3d->move_speed)] == '0')
-        cub3d->posX -= cub3d->planeX *cub3d->move_speed;
-    if(cub3d->map[(int)(cub3d->posY - cub3d->planeY * cub3d->move_speed)][(int)(cub3d->posX)] == '0')
-        cub3d->posY -= cub3d->planeY * cub3d->move_speed;
+    if(cub3d->map[(int)cub3d->pos_y][(int)(cub3d->pos_x - cub3d->planeX * cub3d->move_speed)] == '0')
+        cub3d->pos_x -= cub3d->planeX *cub3d->move_speed;
+    if(cub3d->map[(int)(cub3d->pos_y - cub3d->planeY * cub3d->move_speed)][(int)(cub3d->pos_x)] == '0')
+        cub3d->pos_y -= cub3d->planeY * cub3d->move_speed;
     raycast(cub3d);
 }
 

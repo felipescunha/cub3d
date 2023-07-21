@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:25:28 by learn             #+#    #+#             */
-/*   Updated: 2023/07/17 14:57:59 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/20 20:47:18 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void	print_map(t_cub3d *cub3d)
 {
 	int	i = 0;
 	while (cub3d->full_map[i])
-		ft_printf("%s\n", cub3d->full_map[i++]);
+		printf("%s\n", cub3d->full_map[i++]);
 }
