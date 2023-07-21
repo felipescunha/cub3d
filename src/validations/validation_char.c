@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marolive <marolive@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 20:07:38 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/20 21:00:19 by marolive         ###   ########.fr       */
+/*   Updated: 2023/07/20 22:15:19 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	validation_char(t_cub3d *cub3d)
 		{
 			flag++;
 			cub3d->map[i][j] = '0';
-			cub3d->posX = j;
-			cub3d->posY = i;
+			cub3d->pos_x = j + 0.5;
+			cub3d->pos_y = i + 0.5;
 		}
 		if (permited_char(cub3d, i, j) == 2)
 			print_error("Only 1, 0, N, S, W, E or Spaces are permited\n");
