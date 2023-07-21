@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:03:51 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/21 12:35:56 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/21 19:47:21 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,26 @@ void	condenate_condition(t_cub3d *cub3d, char **tmp_split, int i)
 	tmp_strtrim = ft_strtrim(cub3d->file[i], "");
 	if (ft_strncmp(tmp_strtrim, "NO", 2) == 0)
 	{
-		cub3d->texture[0] = ft_strdup(ft_split_texture(tmp_split));
+		if(!cub3d->texture[0])
+			cub3d->texture[0] = ft_strdup(ft_split_texture(tmp_split));
 		cub3d->total += 1;
 	}
 	else if (ft_strncmp(tmp_strtrim, "SO", 2) == 0)
 	{
-		cub3d->texture[1] = ft_strdup(ft_split_texture(tmp_split));
+		if(!cub3d->texture[1])
+			cub3d->texture[1] = ft_strdup(ft_split_texture(tmp_split));
 		cub3d->total += 2;
 	}
 	else if (ft_strncmp(tmp_strtrim, "WE", 2) == 0)
 	{
-		cub3d->texture[2] = ft_strdup(ft_split_texture(tmp_split));
+		if(!cub3d->texture[2])
+			cub3d->texture[2] = ft_strdup(ft_split_texture(tmp_split));
 		cub3d->total += 4;
 	}
 	else if (ft_strncmp(tmp_strtrim, "EA", 2) == 0)
 	{
-		cub3d->texture[3] = ft_strdup(ft_split_texture(tmp_split));
+		if(!cub3d->texture[3])
+			cub3d->texture[3] = ft_strdup(ft_split_texture(tmp_split));
 		cub3d->total += 8;
 	}
 	free(tmp_strtrim);
