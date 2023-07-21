@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoi_digit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
+/*   By: marolive <marolive@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:31:40 by fecunha           #+#    #+#             */
-/*   Updated: 2022/12/17 20:36:05 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/20 21:04:19 by marolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ long	ft_atoi_digit(const char *str)
 
 	number = 0;
 	i = 0;
-    if (!str)
+	if (!str)
 		return (-1);
 	while (str[i])
-    {
-        if(str[i] >= '0' && str[i] <= '9')
-            i++;
-        else
-		    return (-1);
-    }
+	{
+		if (str[i] >= '0' && str[i] <= '9')
+			i++;
+		else
+			return (-1);
+	}
 	i = 0;
 	while (str[i])
 	{
