@@ -1,17 +1,16 @@
-#include "../includes/cub3d.h"
-/*void	get_max_col(t_map *maps)
-{
-	int	i;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split_comma.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marolive <marolive@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/20 21:07:46 by marolive          #+#    #+#             */
+/*   Updated: 2023/07/20 21:08:32 by marolive         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	i = 0;
-	maps->max_col = 0;
-	while (maps->map[i])
-	{
-		if (maps->max_col < ft_strlen(maps->map[i]))
-			maps->max_col = ft_strlen(maps->map[i]);
-		i++;
-	}
-}*/
+#include "../includes/cub3d.h"
 
 char	*my_realloc(char *str, size_t new_size)
 {
@@ -70,6 +69,7 @@ static void	*clear_word(char **temp_s)
 	free(temp_s);
 	return (temp_s = NULL);
 }
+
 char	**ft_split_comma(char const *s)
 {
 	int		i;

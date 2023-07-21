@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_array_size.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
+/*   By: marolive <marolive@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:31:40 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/10 16:30:52 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/20 21:02:19 by marolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-size_t ft_array_size(char **array)
+size_t	ft_array_size(char **array)
 {
-	size_t i;
-	
+	size_t	i;
+
 	i = 0;
-	if(!array)
+	if (!array)
 		return (0);
 	while (array[i])
 		i++;
