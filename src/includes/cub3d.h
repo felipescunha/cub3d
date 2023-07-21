@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/21 17:07:45 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/21 18:47:13 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ void	print_map(t_cub3d *cub3d);
 void	check_color_floor(t_cub3d *cub3d, int i);
 int		validations(t_cub3d *s_cub3d);
 void	check_color_ceiling(t_cub3d *cub3d, int i);
-void	check_coordinate(t_cub3d *cub3d, int i);
 int		check_ceiling_floor(t_cub3d *cub3d, int i);
 char	*my_realloc(char *str, size_t new_size);
 void	copy_map(t_cub3d *cub3d);
@@ -145,4 +144,6 @@ void	rotate_camera(t_cub3d *cub3d, double rotation_speed, int direction);
 void	load_texture(t_cub3d *cub3d, t_data *texture, char *path);
 void	texturing_calculations(t_cub3d *cub3d);
 void	position_player_in_map(t_cub3d *cub3d);
+void	free_full_map(t_cub3d *cub3d);
+int		validation_wall(t_cub3d *cub3d);
 #endif

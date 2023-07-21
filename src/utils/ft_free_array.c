@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marolive <marolive@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:01:47 by learn             #+#    #+#             */
-/*   Updated: 2023/07/20 21:06:04 by marolive         ###   ########.fr       */
+/*   Updated: 2023/07/21 18:46:41 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,12 @@ void	ft_free_array(char **array)
 	while (array[i])
 		free(array[i++]);
 	free(array);
+}
+
+void	free_full_map(t_cub3d *cub3d)
+{
+	int i = 0 ;
+	while (cub3d->full_map[i])
+		free(cub3d->full_map[i++]);
+	free(cub3d->full_map);
 }
