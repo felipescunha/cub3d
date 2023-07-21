@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marolive <marolive@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:58:46 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/20 22:30:08 by marolive         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:11:23 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,11 @@ void move_left(t_cub3d *cub3d)
 }
 
 
-void rotate_camera(t_cub3d *cub3d, int direction)
+void rotate_camera(t_cub3d *cub3d, double rotation_speed, int direction)
 {
     double old_direction_x;
     double old_plane_x;
-    double rotation_speed;
 
-    rotation_speed = cub3d->rotation_speed;
     rotation_speed *= direction;
     old_direction_x = cub3d->dir_x;
     cub3d->dir_x = cub3d->dir_x * cos(rotation_speed)

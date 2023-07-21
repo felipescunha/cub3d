@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marolive <marolive@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:51:18 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/20 22:31:47 by marolive         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:12:12 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ void raycast(t_cub3d *cub3d)
 		if(cub3d->ray_dir_x == 0)
 			cub3d->delta_dist_x = 1e30;
 		else
-			cub3d->delta_dist_x = sqrt(1 + (cub3d->ray_dir_y * cub3d->ray_dir_y) / (cub3d->ray_dir_x * cub3d->ray_dir_x));
+			cub3d->delta_dist_x = fabs(1 / cub3d->ray_dir_x);
 		if(cub3d->delta_dist_y == 0)
 			cub3d->delta_dist_y = 1e30;
 		else
-			cub3d->delta_dist_y = sqrt(1 + (cub3d->ray_dir_x * cub3d->ray_dir_x) / (cub3d->ray_dir_y * cub3d->ray_dir_y));
+			cub3d->delta_dist_y = fabs(1 / cub3d->ray_dir_y);
 
 		//which box of the map we're in
 		

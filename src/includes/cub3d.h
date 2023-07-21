@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/21 12:37:29 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/21 17:07:45 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,11 @@ typedef struct s_texture {
 typedef struct s_cub3d {
 	int			total;
 	int			i;
+	int			j;
 	int			count;
 	int			read_lines;
-	int			play_position_x;
-	int			play_position_y;
+	char		target_player;
+	int			player_position_y;
 	int			step_x;
 	int			step_y;
 	int			side;
@@ -140,7 +141,8 @@ void	move_forward(t_cub3d *cub3d);
 void	move_backward(t_cub3d *cub3d);
 void	move_right(t_cub3d *cub3d);
 void	move_left(t_cub3d *cub3d);
-void	rotate_camera(t_cub3d *cub3d, int direction);
+void	rotate_camera(t_cub3d *cub3d, double rotation_speed, int direction);
 void	load_texture(t_cub3d *cub3d, t_data *texture, char *path);
 void	texturing_calculations(t_cub3d *cub3d);
+void	position_player_in_map(t_cub3d *cub3d);
 #endif
