@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   starting_values_in_struct.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
+/*   By: marolive <marolive@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:28:57 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/20 21:35:27 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/20 22:30:08 by marolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ void starting_values_in_struct(t_cub3d *cub3d)
 	cub3d->coordinate[1] = ft_strdup("SO");
 	cub3d->coordinate[2] = ft_strdup("WE");
 	cub3d->coordinate[3] = ft_strdup("EA");
-	cub3d->dirX = 1;
-	cub3d->dirY = 0;
-	cub3d->planeX = 0;
+	cub3d->dir_x = 1;
+	cub3d->dir_y = 0;
+	cub3d->plane_x = 0;
 	cub3d->step_x = 0;
 	cub3d->step_y = 0;
-	cub3d->sideDistX = 0;
-	cub3d->sideDistY = 0;
-	cub3d->deltaDistX = 0;
-	cub3d->deltaDistY = 0;
-	cub3d->planeY = 0.66;
+	cub3d->side_dist_x = 0;
+	cub3d->side_dist_y = 0;
+	cub3d->delta_dist_x = 0;
+	cub3d->delta_dist_y = 0;
+	cub3d->plane_y = 0.66;
 	cub3d->move_speed = 0.3;
 	cub3d->rotation_speed = M_PI / 32;
 }
