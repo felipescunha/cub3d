@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_comma.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marolive <marolive@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 21:07:46 by marolive          #+#    #+#             */
-/*   Updated: 2023/07/20 21:08:32 by marolive         ###   ########.fr       */
+/*   Updated: 2023/07/21 20:07:08 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,22 @@ char	**ft_split_comma(char const *s)
 			return (clear_word(temp_s));
 	}
 	return (temp_s);
+}
+
+
+void check_comma(char *str)
+{
+    int i;
+    int count;
+
+    i = 0;
+    count = 0;
+    while(str[i])
+    {
+        if (str[i] == ',')
+            count++;
+        i++;
+    }
+    if (count != 2)
+        print_error("Need only two comma\n");
 }

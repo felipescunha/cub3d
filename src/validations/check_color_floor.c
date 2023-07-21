@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_color_floor.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marolive <marolive@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 20:08:55 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/20 19:22:13 by marolive         ###   ########.fr       */
+/*   Updated: 2023/07/21 20:10:57 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	check_color_floor(t_cub3d *cub3d, int i)
 	{
 		if (!cub3d->verify_floor)
 		{
+			check_comma(cub3d->file[i]);
 			cub3d->verify_floor = ft_split_comma(cub3d->file[i]);
 			cub3d->floor.red = ft_atoi_digit(cub3d->verify_floor[1]);
 			cub3d->floor.green = ft_atoi_digit(cub3d->verify_floor[2]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_color_ceiling.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marolive <marolive@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 20:08:50 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/20 19:21:08 by marolive         ###   ########.fr       */
+/*   Updated: 2023/07/21 20:08:55 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	check_color_ceiling(t_cub3d *cub3d, int i)
 	{
 		if (!cub3d->verify_ceiling)
 		{
+			check_comma(cub3d->file[i]);
 			cub3d->verify_ceiling = ft_split_comma(cub3d->file[i]);
 			cub3d->ceiling.red = ft_atoi_digit(cub3d->verify_ceiling[1]);
 			cub3d->ceiling.green = ft_atoi_digit(cub3d->verify_ceiling[2]);
