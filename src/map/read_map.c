@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:21:09 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/13 17:20:53 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/21 23:39:52 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	read_map(t_cub3d *cub3d, char *argv)
 	while (line)
 	{
 		line = get_next_line(fd);
-		if(!line)
-			break;
+		if (!line)
+			break ;
 		total_lines++;
 		if (line)
 			free(line);
