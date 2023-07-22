@@ -31,7 +31,7 @@ void	condenate_condition(t_cub3d *cub3d, char **tmp_split, int i)
 {
 	char	*tmp_strtrim;
 	
-	tmp_strtrim = ft_strtrim(cub3d->file[i], 32);
+	tmp_strtrim = ft_strtrim(cub3d->file[i], " ");
 	if (ft_strncmp(tmp_strtrim, "NO", 2) == 0)
 	{
 		if(!cub3d->texture[0])
