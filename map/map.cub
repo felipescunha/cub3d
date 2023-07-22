@@ -1,7 +1,8 @@
-NO ./src/texture/north_texture.xpm
+            NO ./src/texture/north_texture.xpm
+
 SO ./src/texture/south_texture.xpm
 WE ./src/texture/west_texture.xpm
-EA ./src/texture/east_texture.xpm
+EA                        ./src/texture/east_texture.xpm
 C 134,188,225
 F 49,27,12
 

@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/22 00:40:42 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/22 13:47:04 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,5 @@ void	position_player_in_map(t_cub3d *cub3d);
 void	free_full_map(t_cub3d *cub3d);
 int		validation_wall(t_cub3d *cub3d);
 void	check_comma(char *str);
-int		verify_extension(t_cub3d *cub3d, int i);
+char	*ft_split_texture(char **texture);
 #endif
