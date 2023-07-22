@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/22 13:47:04 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/22 14:28:56 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void	copy_file(t_cub3d *cub3d, char *argv);
 void	validation_map_name(int argc, char *argv);
 void	ft_free_array(char **array);
 void	free_map(t_cub3d *cub3d);
+void	print_full_map(t_cub3d *cub3d);
 void	print_error(char *msg);
 void	print_map(t_cub3d *cub3d);
 void	check_color_floor(t_cub3d *cub3d, int i);
@@ -149,4 +150,6 @@ void	free_full_map(t_cub3d *cub3d);
 int		validation_wall(t_cub3d *cub3d);
 void	check_comma(char *str);
 char	*ft_split_texture(char **texture);
+void	check_extension(t_cub3d *cub3d);
+int		verify_extension(t_cub3d *cub3d, int i);
 #endif
