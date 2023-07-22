@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   starting_values_in_struct.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marolive <marolive@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:28:57 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/20 22:30:08 by marolive         ###   ########.fr       */
+/*   Updated: 2023/07/22 00:10:52 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void starting_values_in_struct(t_cub3d *cub3d)
+void	starting_values_in_struct(t_cub3d *cub3d)
 {
-    ft_memset(cub3d, 0, sizeof(t_cub3d));
-    cub3d->texture = ft_calloc(5, sizeof(char *));
+	ft_memset(cub3d, 0, sizeof(t_cub3d));
+	cub3d->texture = ft_calloc(5, sizeof(char *));
 	cub3d->coordinate = ft_calloc(5, sizeof(char *));
 	cub3d->coordinate[0] = ft_strdup("NO");
 	cub3d->coordinate[1] = ft_strdup("SO");
@@ -34,4 +34,3 @@ void starting_values_in_struct(t_cub3d *cub3d)
 	cub3d->move_speed = 0.3;
 	cub3d->rotation_speed = M_PI / 32;
 }
-
