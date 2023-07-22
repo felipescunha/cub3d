@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 19:44:29 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/21 19:44:32 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/21 21:27:04 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void	print_map(t_cub3d *cub3d)
 	int	i;
 
 	i = 0;
-	while (cub3d->map[i])
-		printf("%s\n", cub3d->map[i++]);
+	while (cub3d->texture[i])
+		printf("%s\n", cub3d->texture[i++]);
 }
