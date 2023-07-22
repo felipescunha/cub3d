@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:03:51 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/21 22:04:27 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/22 00:38:25 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	check_extension(t_cub3d *cub3d)
 {
-	int		i;
-	int		fd;
+	int	i;
+	int	fd;
 
 	i = 0;
 	while (i < 4)
@@ -34,53 +34,37 @@ char	*ft_split_texture(char **texture)
 	return (texture[1]);
 }
 
-int verify_extension(t_cub3d *cub3d, int i)
+void	texture(t_cub3d *cub3d, char **tmp_split, int i)
 {
-	char	*extension;
-	extension = ft_strrchr(cub3d->file[i], '.');
-	if (!extension)
-		print_error("The map not found!\n");
-	if (ft_strncmp(extension, ".xpm", 5))
-		print_error("The file needed .xpm extension\n");
-	i++;
-	return (i);
+	if (!cub3d->texture[i])
+		cub3d->texture[i] = ft_strdup(ft_split_texture(tmp_split));
+	verify_extension(cub3d, i);
 }
 
 void	condenate_condition(t_cub3d *cub3d, char **tmp_split, int i)
 {
-	char	*tmp_strtrim;
-	
-
-	tmp_strtrim = ft_strtrim(cub3d->file[i], "");
-	if (ft_strncmp(tmp_strtrim, "NO", 2) == 0)
+	cub3d->tmp_strtrim = ft_strtrim(cub3d->file[i], "");
+	if (ft_strncmp(cub3d->tmp_strtrim, "NO", 2) == 0)
 	{
-		if(!cub3d->texture[0])
-			cub3d->texture[0] = ft_strdup(ft_split_texture(tmp_split));
-		verify_extension(cub3d, i);
+		texture(cub3d, tmp_split, 0);
 		cub3d->total += 1;
 	}
-	else if (ft_strncmp(tmp_strtrim, "SO", 2) == 0)
+	else if (ft_strncmp(cub3d->tmp_strtrim, "SO", 2) == 0)
 	{
-		if(!cub3d->texture[1])
-			cub3d->texture[1] = ft_strdup(ft_split_texture(tmp_split));
-		verify_extension(cub3d, i);
+		texture(cub3d, tmp_split, 1);
 		cub3d->total += 2;
 	}
-	else if (ft_strncmp(tmp_strtrim, "WE", 2) == 0)
+	else if (ft_strncmp(cub3d->tmp_strtrim, "WE", 2) == 0)
 	{
-		if(!cub3d->texture[2])
-			cub3d->texture[2] = ft_strdup(ft_split_texture(tmp_split));
-		verify_extension(cub3d, i);
+		texture(cub3d, tmp_split, 2);
 		cub3d->total += 4;
 	}
-	else if (ft_strncmp(tmp_strtrim, "EA", 2) == 0)
+	else if (ft_strncmp(cub3d->tmp_strtrim, "EA", 2) == 0)
 	{
-		if(!cub3d->texture[3])
-			cub3d->texture[3] = ft_strdup(ft_split_texture(tmp_split));
-		verify_extension(cub3d, i);
+		texture(cub3d, tmp_split, 3);
 		cub3d->total += 8;
 	}
-	free(tmp_strtrim);
+	free(cub3d->tmp_strtrim);
 }
 
 int	validations(t_cub3d *cub3d)

@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 20:07:38 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/21 20:19:35 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/22 00:42:36 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	permited_char(t_cub3d *c, int i)
 					|| c->map[c->j][i] == 'E'))
 					print_error("More then one player detected\n");
 			}
-			return (1);    
+			return (1);
 		}
 		if (c->map[c->j] && (c->map[c->j][c->i] != 32
 			&& c->map[c->j][c->i] != '1' && c->map[c->j][c->i] != '0'
@@ -41,7 +41,7 @@ int	permited_char(t_cub3d *c, int i)
 	return (0);
 }
 
-void    validation_char(t_cub3d *cub3d)
+void	validation_char(t_cub3d *cub3d)
 {
 	int	i;
 	int	flag;

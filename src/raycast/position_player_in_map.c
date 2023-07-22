@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:21:47 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/21 19:33:58 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/22 00:18:19 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void	position_player_in_map(t_cub3d *cub3d)
 	else if (cub3d->target_player == 'E')
 		rotate_camera(cub3d, M_PI / 2, ROTATION_RIGHT);
 	else if (cub3d->target_player == 'W')
-		rotate_camera(cub3d, M_PI / 2, ROTATION_LEFT);	
+		rotate_camera(cub3d, M_PI / 2, ROTATION_LEFT);
 }
