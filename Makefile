@@ -14,6 +14,7 @@ SRCS =	src/main.c \
 		src/validations/check_color_floor.c src/validations/check_color_ceiling.c \
 		src/validations/check_ceiling_floor.c src/validations/validations.c \
 		src/validations/validation_wall.c src/validations/check_extension.c \
+		src/validations/directions.c \
 		src/raycast/raycast.c src/raycast/load_texture.c src/raycast/texturing_calculations.c \
 		src/raycast/position_player_in_map.c \
 		src/controllers/movements.c

@@ -1,38 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validations.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/22 17:45:28 by fecunha           #+#    #+#             */
+/*   Updated: 2023/07/22 18:01:43 by fecunha          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void	condenate_condition(t_cub3d *cub3d, char **tmp_split, int i)
 {
 	char	*tmp_strtrim;
-	
+
 	tmp_strtrim = ft_strtrim(cub3d->file[i], " ");
 	if (ft_strncmp(tmp_strtrim, "NO", 2) == 0)
-	{
-		if(!cub3d->texture[0])
-			cub3d->texture[0] = ft_strdup(ft_split_texture(tmp_split));
-		verify_extension(cub3d, i);
-		cub3d->total += 1;
-	}
+		direction_no(cub3d, tmp_split, i);
 	else if (ft_strncmp(tmp_strtrim, "SO", 2) == 0)
-	{
-		if(!cub3d->texture[1])
-			cub3d->texture[1] = ft_strdup(ft_split_texture(tmp_split));
-		verify_extension(cub3d, i);
-		cub3d->total += 2;
-	}
+		direction_so(cub3d, tmp_split, i);
 	else if (ft_strncmp(tmp_strtrim, "WE", 2) == 0)
-	{
-		if(!cub3d->texture[2])
-			cub3d->texture[2] = ft_strdup(ft_split_texture(tmp_split));
-		verify_extension(cub3d, i);
-		cub3d->total += 4;
-	}
+		direction_we(cub3d, tmp_split, i);
 	else if (ft_strncmp(tmp_strtrim, "EA", 2) == 0)
-	{
-		if(!cub3d->texture[3])
-			cub3d->texture[3] = ft_strdup(ft_split_texture(tmp_split));
-		verify_extension(cub3d, i);
-		cub3d->total += 8;
-	}
+		direction_ea(cub3d, tmp_split, i);
 	free(tmp_strtrim);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/22 14:28:56 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/22 18:10:08 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,4 +152,9 @@ void	check_comma(char *str);
 char	*ft_split_texture(char **texture);
 void	check_extension(t_cub3d *cub3d);
 int		verify_extension(t_cub3d *cub3d, int i);
+void	direction_no(t_cub3d *cub3d, char **tmp_split, int i);
+void	direction_so(t_cub3d *cub3d, char **tmp_split, int i);
+void	direction_we(t_cub3d *cub3d, char **tmp_split, int i);
+void	direction_ea(t_cub3d *cub3d, char **tmp_split, int i);
+
 #endif
