@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:22:51 by fecunha           #+#    #+#             */
-/*   Updated: 2022/10/20 16:34:13 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/21 22:41:50 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	ft_put_number(int n)
 	}
 	if (nbr >= 10)
 	{
-	count += ft_put_number(nbr / 10);
-	count += ft_put_number(nbr % 10);
+		count += ft_put_number(nbr / 10);
+		count += ft_put_number(nbr % 10);
 	}
 	if (nbr < 10)
 	{

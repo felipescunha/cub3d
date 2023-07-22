@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:22:51 by fecunha           #+#    #+#             */
-/*   Updated: 2022/10/20 16:34:35 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/21 22:41:28 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_put_unsigned_int(unsigned int u)
 	count = 0;
 	if (u >= 10)
 	{
-	count += ft_put_unsigned_int(u / 10);
-	count += ft_put_unsigned_int(u % 10);
+		count += ft_put_unsigned_int(u / 10);
+		count += ft_put_unsigned_int(u % 10);
 	}
 	if (u < 10)
 	{
