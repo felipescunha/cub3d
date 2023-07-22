@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 21:07:46 by marolive          #+#    #+#             */
-/*   Updated: 2023/07/22 13:38:55 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/22 15:21:54 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,4 @@ void	check_comma(char *str)
 	}
 	if (count != 2)
 		print_error("Need only two comma\n");
-}
-
-char	*ft_split_texture(char **texture)
-{
-	if (ft_array_size(texture) != 2)
-		print_error("In texture array\n");
-	return (texture[1]);
 }
