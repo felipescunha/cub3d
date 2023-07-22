@@ -9,14 +9,14 @@ SRCS =	src/main.c \
 		src/map/copy_map.c src/map/read_map.c src/map/get_range.c \
 		src/utils/print_error.c src/utils/split_comma.c src/utils/ft_atoi_digit.c \
 		src/utils/ft_free_array.c src/utils/ft_array_size.c src/utils/print_maps.c\
-		src/utils/starting_values_in_struct.c \
-		src/validations/validation_extension.c src/validations/validation_char.c  \
+		src/utils/starting_values_in_struct.c src/utils/actions.c \
+		src/validations/validation_char.c  \
 		src/validations/check_color_floor.c src/validations/check_color_ceiling.c \
 		src/validations/check_ceiling_floor.c src/validations/validations.c \
 		src/validations/validation_wall.c src/validations/check_extension.c \
 		src/validations/directions.c \
 		src/raycast/raycast.c src/raycast/load_texture.c src/raycast/texturing_calculations.c \
-		src/raycast/position_player_in_map.c \
+		src/raycast/position_player_in_map.c src/raycast/raycast_ads.c src/raycast/raycast_color.c \
 		src/controllers/movements.c
 
 OBJS = $(SRCS:.c=.o)

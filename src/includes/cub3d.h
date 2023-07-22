@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:23:06 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/22 18:10:08 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/22 19:20:07 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ typedef struct s_cub3d {
 	int			draw_start;
 	int			texture_x;
 	int			line_height;
-	void		*mlx_ptr;
-	void		*win_ptr;
+	void		*mlx;
+	void		*win;
 	char		*tmp_strtrim;
 	char		**coordinate;
 	char		**file;
@@ -110,7 +110,7 @@ typedef struct s_cub3d {
 	double		perp_wall_dist;
 	double		texture_position;
 	t_data		img;
-	t_color		ceiling;
+	t_color		ceil;
 	t_color		floor;
 	t_texture	textures;
 }	t_cub3d;
@@ -156,5 +156,14 @@ void	direction_no(t_cub3d *cub3d, char **tmp_split, int i);
 void	direction_so(t_cub3d *cub3d, char **tmp_split, int i);
 void	direction_we(t_cub3d *cub3d, char **tmp_split, int i);
 void	direction_ea(t_cub3d *cub3d, char **tmp_split, int i);
-
+int		key_press(int keycode, t_cub3d *cub3d);
+int		click_x(t_cub3d *cub3d);
+int		close_game(t_cub3d *cub3d);
+int		create_trgb(int t, int r, int g, int b);
+int		get_addr_locale(t_data img, int x, int y);
+void	my_mlx_pixel_put(t_cub3d *cub3d, int x, int y, int color);
+size_t	get_color(t_data img, int x, int y);
+void	print_line(t_cub3d *cub3d, int color, int x);
+void	zero_fill(t_cub3d *cub3d);
+void	mlx_image(t_cub3d *cub3d);
 #endif
