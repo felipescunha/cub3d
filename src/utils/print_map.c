@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 19:44:29 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/21 21:27:04 by fecunha          ###   ########.fr       */
+/*   Created: 2023/07/17 13:25:28 by learn             #+#    #+#             */
+/*   Updated: 2023/07/21 21:56:06 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void	print_map(t_cub3d *cub3d)
 	int	i;
 
 	i = 0;
-	while (cub3d->texture[i])
-		printf("%s\n", cub3d->texture[i++]);
+	while (cub3d->full_map[i])
+		printf("%s\n", cub3d->full_map[i++]);
 }

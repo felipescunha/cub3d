@@ -6,7 +6,7 @@
 /*   By: fecunha <fecunha@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:03:51 by fecunha           #+#    #+#             */
-/*   Updated: 2023/07/21 21:48:18 by fecunha          ###   ########.fr       */
+/*   Updated: 2023/07/21 22:04:27 by fecunha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,13 @@ void	check_extension(t_cub3d *cub3d)
 {
 	int		i;
 	int		fd;
-	//char	*extension;
 
 	i = 0;
-
-	print_map(cub3d);
-
 	while (i < 4)
 	{
 		fd = open(cub3d->texture[i], O_RDONLY);
 		if (fd < 0)
 			print_error("In texture file!\n");
-/* 		extension = ft_strrchr(cub3d->file[i], '.');
-		if (!extension)
-			print_error("The map not found!\n");
-		if (ft_strncmp(extension, ".xpm", 5))
-			print_error("The file needed .xpm extension\n"); */
 		i++;
 	}
 }
